@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>myblog - Visualization and Analysis of Top Billboard Songs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">myblog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Visualization and Analysis of Top Billboard Songs</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Kaelyn Sakai • July 2023</p>
+<section id="project-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="project-introduction">Project Introduction</h2>
+<p>The dataset I that I plan on investigating further is the <strong><a href="https://www.kaggle.com/datasets/leonardopena/top-spotify-songs-from-20102019-by-year?resource=download">Spotify Top Songs Data</a></strong> from Kaggle. The data contains information about a variety of Billboard top songs. I wanted to analyze this, because I have always been interested in music trends and music in general. Music throughout history is consistently changing, and exploring this dataset can help to further understand the types of songs that have been popular recently. The main research question I will be addressing is, “<strong>What types of songs were the most popular in the 2010’s and can correlations be drawn between the different variables that contribute to the song popularity?</strong>”.</p>
+</section>
+<section id="data-exploration-and-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="data-exploration-and-introduction">Data Exploration and Introduction</h2>
+<p>This data contains some of the top songs between the years 2010 through 2019. This is a brief overview of the data and what each variable represents.</p>
+<table class="table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Variable</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">top genre</td>
+<td style="text-align: left;">Genre of the track</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">year</td>
+<td style="text-align: left;">The year the song appeared on Billboard</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">bpm</td>
+<td style="text-align: left;">Beats per minute of the song</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">nrgy</td>
+<td style="text-align: left;">Energy: The energy rating of the song - the higher the nrgy score, the more energetic the song is</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">dnce</td>
+<td style="text-align: left;">Dance: The danceability rating of the song - the higher the dnce score, the easier it is to dance to</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">dB</td>
+<td style="text-align: left;">Decibels: The overall loudness - the higher the dB, the louder the song</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">live</td>
+<td style="text-align: left;">The higher the value, the more likely the song is a live recording</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">val</td>
+<td style="text-align: left;">Valence: The mood of the song - the higher the valence, the more cheerful the song is</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">dur</td>
+<td style="text-align: left;">Duration: Length of the song in seconds</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">acous</td>
+<td style="text-align: left;">Acoustics: The higher the acoustic value, the more acoustic the song is</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">spch</td>
+<td style="text-align: left;">Speechiness: The higher the value, the song contains more spoken words</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">pop</td>
+<td style="text-align: left;">Popularity: Measures how popular the song was</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'spotify.csv'</span>,encoding<span class="op">=</span><span class="st">'latin-1'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">title</th>
+<th data-quarto-table-cell-role="th">artist</th>
+<th data-quarto-table-cell-role="th">top genre</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Hey, Soul Sister</td>
+<td>Train</td>
+<td>neo mellow</td>
+<td>2010</td>
+<td>97</td>
+<td>89</td>
+<td>67</td>
+<td>-4</td>
+<td>8</td>
+<td>80</td>
+<td>217</td>
+<td>19</td>
+<td>4</td>
+<td>83</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>Love The Way You Lie</td>
+<td>Eminem</td>
+<td>detroit hip hop</td>
+<td>2010</td>
+<td>87</td>
+<td>93</td>
+<td>75</td>
+<td>-5</td>
+<td>52</td>
+<td>64</td>
+<td>263</td>
+<td>24</td>
+<td>23</td>
+<td>82</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>TiK ToK</td>
+<td>Kesha</td>
+<td>dance pop</td>
+<td>2010</td>
+<td>120</td>
+<td>84</td>
+<td>76</td>
+<td>-3</td>
+<td>29</td>
+<td>71</td>
+<td>200</td>
+<td>10</td>
+<td>14</td>
+<td>80</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>Bad Romance</td>
+<td>Lady Gaga</td>
+<td>dance pop</td>
+<td>2010</td>
+<td>119</td>
+<td>92</td>
+<td>70</td>
+<td>-4</td>
+<td>8</td>
+<td>71</td>
+<td>295</td>
+<td>0</td>
+<td>4</td>
+<td>79</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5</td>
+<td>Just the Way You Are</td>
+<td>Bruno Mars</td>
+<td>pop</td>
+<td>2010</td>
+<td>109</td>
+<td>84</td>
+<td>64</td>
+<td>-5</td>
+<td>9</td>
+<td>43</td>
+<td>221</td>
+<td>2</td>
+<td>4</td>
+<td>78</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">598</td>
+<td>599</td>
+<td>Find U Again (feat. Camila Cabello)</td>
+<td>Mark Ronson</td>
+<td>dance pop</td>
+<td>2019</td>
+<td>104</td>
+<td>66</td>
+<td>61</td>
+<td>-7</td>
+<td>20</td>
+<td>16</td>
+<td>176</td>
+<td>1</td>
+<td>3</td>
+<td>75</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">599</td>
+<td>600</td>
+<td>Cross Me (feat. Chance the Rapper &amp; PnB Rock)</td>
+<td>Ed Sheeran</td>
+<td>pop</td>
+<td>2019</td>
+<td>95</td>
+<td>79</td>
+<td>75</td>
+<td>-6</td>
+<td>7</td>
+<td>61</td>
+<td>206</td>
+<td>21</td>
+<td>12</td>
+<td>75</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">600</td>
+<td>601</td>
+<td>No Brainer (feat. Justin Bieber, Chance the Ra...</td>
+<td>DJ Khaled</td>
+<td>dance pop</td>
+<td>2019</td>
+<td>136</td>
+<td>76</td>
+<td>53</td>
+<td>-5</td>
+<td>9</td>
+<td>65</td>
+<td>260</td>
+<td>7</td>
+<td>34</td>
+<td>70</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">601</td>
+<td>602</td>
+<td>Nothing Breaks Like a Heart (feat. Miley Cyrus)</td>
+<td>Mark Ronson</td>
+<td>dance pop</td>
+<td>2019</td>
+<td>114</td>
+<td>79</td>
+<td>60</td>
+<td>-6</td>
+<td>42</td>
+<td>24</td>
+<td>217</td>
+<td>1</td>
+<td>7</td>
+<td>69</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">602</td>
+<td>603</td>
+<td>Kills You Slowly</td>
+<td>The Chainsmokers</td>
+<td>electropop</td>
+<td>2019</td>
+<td>150</td>
+<td>44</td>
+<td>70</td>
+<td>-9</td>
+<td>13</td>
+<td>23</td>
+<td>213</td>
+<td>6</td>
+<td>6</td>
+<td>67</td>
+</tr>
+</tbody>
+</table>
+
+<p>603 rows × 15 columns</p>
+</div>
+</div>
+</div>
+<p>The table above shows an overview of the dataset I will be using. There are 603 songs included, with 14 columns describing them.</p>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>603.000000</td>
+<td>603.000000</td>
+<td>603.000000</td>
+<td>603.000000</td>
+<td>603.000000</td>
+<td>603.000000</td>
+<td>603.000000</td>
+<td>603.000000</td>
+<td>603.000000</td>
+<td>603.000000</td>
+<td>603.000000</td>
+<td>603.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>302.000000</td>
+<td>2014.592040</td>
+<td>118.545605</td>
+<td>70.504146</td>
+<td>64.379768</td>
+<td>-5.578773</td>
+<td>17.774461</td>
+<td>52.225539</td>
+<td>224.674959</td>
+<td>14.326700</td>
+<td>8.358209</td>
+<td>66.520730</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>174.215384</td>
+<td>2.607057</td>
+<td>24.795358</td>
+<td>16.310664</td>
+<td>13.378718</td>
+<td>2.798020</td>
+<td>13.102543</td>
+<td>22.513020</td>
+<td>34.130059</td>
+<td>20.766165</td>
+<td>7.483162</td>
+<td>14.517746</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>1.000000</td>
+<td>2010.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>-60.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>134.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>151.500000</td>
+<td>2013.000000</td>
+<td>100.000000</td>
+<td>61.000000</td>
+<td>57.000000</td>
+<td>-6.000000</td>
+<td>9.000000</td>
+<td>35.000000</td>
+<td>202.000000</td>
+<td>2.000000</td>
+<td>4.000000</td>
+<td>60.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>302.000000</td>
+<td>2015.000000</td>
+<td>120.000000</td>
+<td>74.000000</td>
+<td>66.000000</td>
+<td>-5.000000</td>
+<td>12.000000</td>
+<td>52.000000</td>
+<td>221.000000</td>
+<td>6.000000</td>
+<td>5.000000</td>
+<td>69.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>452.500000</td>
+<td>2017.000000</td>
+<td>129.000000</td>
+<td>82.000000</td>
+<td>73.000000</td>
+<td>-4.000000</td>
+<td>24.000000</td>
+<td>69.000000</td>
+<td>239.500000</td>
+<td>17.000000</td>
+<td>9.000000</td>
+<td>76.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>603.000000</td>
+<td>2019.000000</td>
+<td>206.000000</td>
+<td>98.000000</td>
+<td>97.000000</td>
+<td>-2.000000</td>
+<td>74.000000</td>
+<td>98.000000</td>
+<td>424.000000</td>
+<td>99.000000</td>
+<td>48.000000</td>
+<td>99.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,x<span class="op">=</span><span class="st">'year'</span>,y<span class="op">=</span><span class="st">'val'</span>,color<span class="op">=</span><span class="st">'lightblue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="85">
+<pre><code>&lt;Axes: xlabel='year', ylabel='val'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Notebook Draft_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> df[<span class="st">'artist'</span>].value_counts().nlargest(<span class="dv">15</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>c.plot(kind<span class="op">=</span><span class="st">'bar'</span>,color<span class="op">=</span><span class="st">'pink'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="105">
+<pre><code>&lt;Axes: &gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Notebook Draft_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,x<span class="op">=</span><span class="st">'nrgy'</span>,y<span class="op">=</span><span class="st">'pop'</span>,color<span class="op">=</span><span class="st">'purple'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="115">
+<pre><code>&lt;Axes: xlabel='nrgy', ylabel='pop'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Notebook Draft_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> df[<span class="st">'top genre'</span>].value_counts().nlargest(<span class="dv">15</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>g.plot(kind<span class="op">=</span><span class="st">'bar'</span>,color<span class="op">=</span><span class="st">'mediumturquoise'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="125">
+<pre><code>&lt;Axes: &gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Notebook Draft_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
+<div class="cell" data-execution_count="130">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.sentiment <span class="im">import</span> vader</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> opinion_lexicon</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.stem.porter <span class="im">import</span> PorterStemmer</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'punkt'</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'vader_lexicon'</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'opinion_lexicon'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[nltk_data] Downloading package punkt to /home/jovyan/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package stopwords to /home/jovyan/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package vader_lexicon to
+[nltk_data]     /home/jovyan/nltk_data...
+[nltk_data]   Package vader_lexicon is already up-to-date!
+[nltk_data] Downloading package opinion_lexicon to
+[nltk_data]     /home/jovyan/nltk_data...
+[nltk_data]   Package opinion_lexicon is already up-to-date!</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="130">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="154">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sia <span class="op">=</span> vader.SentimentIntensityAnalyzer()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-scrolled="true" data-execution_count="158">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>col_list <span class="op">=</span> df[<span class="st">"title"</span>].values.tolist()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="st">' '</span>.join(col_list)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>title_lower <span class="op">=</span> title.lower()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="159">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize, sent_tokenize</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tokenize(string):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  sent <span class="op">=</span> sent_tokenize(title_lower)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  words <span class="op">=</span> []</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> s <span class="kw">in</span> sent:</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> w <span class="kw">in</span> word_tokenize(s):</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>          words.append(w)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> words</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> tokenize(title_lower)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['hey', ',', 'soul', 'sister', 'love', 'the', 'way', 'you', 'lie', 'tik', 'tok', 'bad', 'romance', 'just', 'the', 'way', 'you', 'are', 'baby', 'dynamite', 'secrets', 'empire', 'state', 'of', 'mind', '(', 'part', 'ii', ')', 'broken', 'down', 'only', 'girl', '(', 'in', 'the', 'world', ')', 'club', 'ca', "n't", 'handle', 'me', '(', 'feat', '.', 'david', 'guetta', ')', 'marry', 'you', 'cooler', 'than', 'me', '-', 'single', 'mix', 'telephone', 'like', 'a', 'g6', 'omg', '(', 'feat', '.', 'will.i.am', ')', 'eenie', 'meenie', 'the', 'time', '(', 'dirty', 'bit', ')', 'alejandro', 'your', 'love', 'is', 'my', 'drug', 'meet', 'me', 'halfway', 'whataya', 'want', 'from', 'me', 'take', 'it', 'off', 'misery', 'all', 'the', 'right', 'moves', 'animal', 'naturally', 'i', 'like', 'it', 'teenage', 'dream', 'california', 'gurls', '3', 'my', 'first', 'kiss', '-', 'feat', '.', 'ke', '$', 'ha', 'blah', 'blah', 'blah', '(', 'feat', '.', '3oh', '!', '3', ')', 'imma', 'be', 'try', 'sleeping', 'with', 'a', 'broken', 'heart', 'sexy', 'bitch', '(', 'feat', '.', 'akon', ')', 'bound', 'to', 'you', '-', 'burlesque', 'original', 'motion', 'picture', 'soundtrack', 'if', 'i', 'had', 'you', 'rock', 'that', 'body', 'dog', 'days', 'are', 'over', 'something', "'s", 'got', 'a', 'hold', 'on', 'me', '-', 'burlesque', 'original', 'motion', 'picture', 'soundtrack', 'does', "n't", 'mean', 'anything', 'hard', 'loca', 'you', 'lost', 'me', 'not', 'myself', 'tonight', 'written', 'in', 'the', 'stars', '(', 'feat', '.', 'eric', 'turner', ')', 'dj', 'got', 'us', 'fallin', "'", 'in', 'love', '(', 'feat', '.', 'pitbull', ')', 'castle', 'walls', '(', 'feat', '.', 'christina', 'aguilera', ')', 'break', 'your', 'heart', 'hello', 'a', 'thousand', 'years', 'someone', 'like', 'you', 'give', 'me', 'everything', 'just', 'the', 'way', 'you', 'are', 'rolling', 'in', 'the', 'deep', 'run', 'the', 'world', '(', 'girls', ')', 'moves', 'like', 'jagger', '-', 'studio', 'recording', 'from', 'the', 'voice', 'performance', 'love', 'on', 'top', 'grenade', 'tonight', 'tonight', 'what', 'the', 'hell', 'born', 'this', 'way', 'monster', 'marry', 'you', 'best', 'thing', 'i', 'never', 'had', 'party', 'rock', 'anthem', 'we', 'r', 'who', 'we', 'r', 'price', 'tag', 'good', 'life', 'just', 'can\x92t', 'get', 'enough', 'on', 'the', 'floor', 'what', "'s", 'my', 'name', '?', 'yeah', '3x', 'without', 'you', '(', 'feat', '.', 'usher', ')', 'sexy', 'and', 'i', 'know', 'it', 'the', 'edge', 'of', 'glory', 'e.t', '.', 'till', 'the', 'world', 'ends', 'i', 'wan', 'na', 'go', 'blow', 'you', 'and', 'i', 'judas', 'tonight', '(', 'i', "'m", 'fuckin', "'", 'you', ')', 'please', 'do', "n't", 'go', 'we', 'found', 'love', 'marry', 'the', 'night', '1+1', 'hold', 'it', 'against', 'me', 'i', "'m", 'into', 'you', 'papi', 'cheers', '(', 'drink', 'to', 'that', ')', 's', '&amp;', 'm', 'remix', 'written', 'in', 'the', 'stars', '(', 'feat', '.', 'eric', 'turner', ')', 'jar', 'of', 'hearts', 'castle', 'walls', '(', 'feat', '.', 'christina', 'aguilera', ')', 'turning', 'page', 'super', 'bass', 'raise', 'your', 'glass', 'invading', 'my', 'mind', 'moment', '4', 'life', '-', 'album', 'version', '(', 'edited', ')', 'last', 'friday', 'night', '(', 't.g.i.f', '.', ')', 'firework', 'muny', '-', 'album', 'version', '(', 'edited', ')', 'titanium', '(', 'feat', '.', 'sia', ')', 'locked', 'out', 'of', 'heaven', 'paradise', 'payphone', 'what', 'makes', 'you', 'beautiful', 'i', 'knew', 'you', 'were', 'trouble', '.', 'call', 'me', 'maybe', 'love', 'you', 'like', 'a', 'love', 'song', 'set', 'fire', 'to', 'the', 'rain', 'we', 'are', 'never', 'ever', 'getting', 'back', 'together', 'stronger', '(', 'what', 'does', "n't", 'kill', 'you', ')', 'try', 'starships', 'one', 'more', 'night', 'good', 'time', 'glad', 'you', 'came', 'beauty', 'and', 'a', 'beat', 'international', 'love', 'some', 'nights', 'boyfriend', 'part', 'of', 'me', 'domino', 'where', 'have', 'you', 'been', 'wide', 'awake', 'the', 'one', 'that', 'got', 'away', 'dance', 'again', 'turn', 'up', 'the', 'music', 'lights', '-', 'single', 'version', 'we', 'are', 'young', '(', 'feat', '.', 'janelle', 'monáe', ')', 'diamonds', 'do', "n't", 'stop', 'the', 'party', '(', 'feat', '.', 'tjr', ')', 'you', 'da', 'one', 'stereo', 'hearts', '(', 'feat', '.', 'adam', 'levine', ')', 'it', 'will', 'rain', 'blow', 'me', '(', 'one', 'last', 'kiss', ')', 'underneath', 'the', 'tree', 'wake', 'me', 'up', 'story', 'of', 'my', 'life', 'just', 'give', 'me', 'a', 'reason', '(', 'feat', '.', 'nate', 'ruess', ')', 'hall', 'of', 'fame', 'roar', 'we', 'ca', "n't", 'stop', 'do', "n't", 'you', 'worry', 'child', '-', 'radio', 'edit', 'get', 'lucky', '(', 'feat', '.', 'pharrell', 'williams', '&amp;', 'nile', 'rodgers', ')', '-', 'radio', 'edit', 'wrecking', 'ball', 'impossible', 'blurred', 'lines', 'heart', 'attack', 'we', 'are', 'never', 'ever', 'getting', 'back', 'together', 'die', 'young', 'clarity', 'summertime', 'sadness', '(', 'lana', 'del', 'rey', 'vs.', 'cedric', 'gervais', ')', '-', 'cedric', 'gervais', 'remix', 'under', 'control', 'everybody', 'talks', 'hold', 'on', ',', 'we', "'re", 'going', 'home', 'best', 'song', 'ever', 'kiss', 'you', 'sweet', 'nothing', '(', 'feat', '.', 'florence', 'welch', ')', 'lose', 'yourself', 'to', 'dance', 'work', 'bitch', 'brave', 'ca', "n't", 'hold', 'us', '(', 'feat', '.', 'ray', 'dalton', ')', 'feel', 'this', 'moment', '(', 'feat', '.', 'christina', 'aguilera', ')', 'beneath', 'your', 'beautiful', 'let', 'me', 'love', 'you', '(', 'until', 'you', 'learn', 'to', 'love', 'yourself', ')', 'thrift', 'shop', '(', 'feat', '.', 'wanz', ')', 'if', 'i', 'lose', 'myself', '-', 'alesso', 'vs', 'onerepublic', 'the', 'way', 'suit', '&amp;', 'tie', '#', 'thatpower', 'i', 'love', 'it', '(', 'feat', '.', 'charli', 'xcx', ')', 'play', 'hard', '(', 'feat', '.', 'ne-yo', '&amp;', 'akon', ')', '-', 'new', 'edit', 'daylight', 'love', 'somebody', 'a', 'little', 'party', 'never', 'killed', 'nobody', '(', 'all', 'we', 'got', ')', 'move', 'walks', 'like', 'rihanna', 'rock', 'n', 'roll', 'heartbreaker', 'mirrors', '-', 'radio', 'edit', 'next', 'to', 'me', 'made', 'in', 'the', 'usa', 'clown', 'girl', 'on', 'fire', '(', 'feat', '.', 'nicki', 'minaj', ')', '-', 'inferno', 'version', 'tko', 'come', '&amp;', 'get', 'it', 'live', 'it', 'up', 'we', 'own', 'the', 'night', 'atlas', '-', 'from', '\x93the', 'hunger', 'games', ':', 'catching', 'fire\x94', 'soundtrack', 'what', 'about', 'love', 'take', 'back', 'the', 'night', 'applause', 'anything', 'could', 'happen', 'finally', 'found', 'you', 'pom', 'poms', '#', 'beautiful', 'how', 'ya', 'doin', "'", '?', '(', 'feat', '.', 'missy', 'elliott', ')', 'crazy', 'kids', '(', 'feat', '.', 'will.i.am', ')', 'ooh', 'la', 'la', '(', 'from', '``', 'the', 'smurfs', '2', "''", ')', 'people', 'like', 'us', 'overdose', 'right', 'now', '-', 'dyro', 'radio', 'edit', 'give', 'it', '2', 'u', 'foolish', 'games', 'outta', 'nowhere', '(', 'feat', '.', 'danny', 'mercer', ')', 'freak', 'all', 'of', 'me', 'stay', 'with', 'me', 'summer', 'happy', '-', 'from', '``', 'despicable', 'me', '2', "''", 'rude', 'shake', 'it', 'off', 'dark', 'horse', 'hey', 'brother', 'maps', 'treasure', 'let', 'her', 'go', 'problem', 'pompeii', 'team', 'love', 'me', 'again', 'latch', 'adore', 'you', 'love', 'never', 'felt', 'so', 'good', 'burn', 'she', 'looks', 'so', 'perfect', 'fancy', 'talk', 'dirty', '(', 'feat', '.', '2', 'chainz', ')', 'gorilla', 'human', 'young', 'girls', 'wiggle', '(', 'feat', '.', 'snoop', 'dogg', ')', 'love', 'runs', 'out', 'this', 'is', 'how', 'we', 'do', 'mmm', 'yeah', '(', 'feat', '.', 'pitbull', ')', 'a', 'little', 'party', 'never', 'killed', 'nobody', '(', 'all', 'we', 'got', ')', '#', 'selfie', 'partition', 'birthday', 'g.u.y', '.', 'stay', 'the', 'night', '-', 'featuring', 'hayley', 'williams', 'of', 'paramore', 'let', 'it', 'go', '-', 'from', '``', 'frozen', '/', 'single', 'version', 'wings', 'ca', "n't", 'remember', 'to', 'forget', 'you', '(', 'feat', '.', 'rihanna', ')', 'shot', 'me', 'down', '(', 'feat', '.', 'skylar', 'grey', ')', '-', 'radio', 'edit', 'say', 'something', 'a', 'sky', 'full', 'of', 'stars', 'come', 'get', 'it', 'bae', 'chandelier', 'xo', 'we', 'are', 'one', '(', 'ole', 'ola', ')', '[', 'the', 'official', '2014', 'fifa', 'world', 'cup', 'song', ']', 'not', 'about', 'angels', 'drunk', 'in', 'love', 'anaconda', 'boom', 'clap', '-', 'from', 'the', 'motion', 'picture', 'das', 'schicksal', 'ist', 'ein', 'mieser', 'verräter', 'la', 'la', 'la', '(', 'brasil', '2014', ')', '(', 'feat', '.', 'carlinhos', 'brown', ')', 'tee', 'shirt', '-', 'soundtrack', 'version', 'words', 'as', 'weapons', 'you', "'re", 'mine', '(', 'eternal', ')', 'sheezus', 'cannonball', 'it', "'s", 'on', 'again', '-', 'main', 'soundtrack', 'i', 'luh', 'ya', 'papi', 'not', 'a', 'bad', 'thing', 'thinking', 'out', 'loud', 'i', "'m", 'not', 'the', 'only', 'one', 'the', 'hills', 'love', 'yourself', 'uptown', 'funk', 'take', 'me', 'to', 'church', 'sugar', 'sorry', 'fourfiveseconds', 'love', 'me', 'like', 'you', 'do', '-', 'from', '``', 'fifty', 'shades', 'of', 'grey', "''", 'earned', 'it', '(', 'fifty', 'shades', 'of', 'grey', ')', '-', 'from', 'the', '``', 'fifty', 'shades', 'of', 'grey', "''", 'soundtrack', 'what', 'do', 'you', 'mean', '?', 'stitches', 'want', 'to', 'want', 'me', 'my', 'house', 'waves', '-', 'robin', 'schulz', 'radio', 'edit', 'night', 'changes', 'how', 'deep', 'is', 'your', 'love', 'never', 'forget', 'you', 'love', 'me', 'harder', 'animals', 'blame', 'worth', 'it', 'break', 'free', 'do', "n't", 'elastic', 'heart', 'rather', 'be', '(', 'feat', '.', 'jess', 'glynne', ')', 'hello', 'dear', 'future', 'husband', '43776', 'the', 'heart', 'wants', 'what', 'it', 'wants', 'hey', 'mama', '(', 'feat', '.', 'nicki', 'minaj', ',', 'bebe', 'rexha', '&amp;', 'afrojack', ')', 'genie', 'in', 'a', 'bottle', 'company', 'sing', 'jealous', '-', 'remix', 'really', 'do', "n't", 'care', 'downtown', '(', 'feat', '.', 'melle', 'mel', ',', 'grandmaster', 'caz', ',', 'kool', 'moe', 'dee', '&amp;', 'eric', 'nally', ')', 'only', 'love', 'can', 'hurt', 'like', 'this', 'heartbeat', 'song', 'up', 'trumpets', 'runnin', "'", '(', 'lose', 'it', 'all', ')', 'same', 'old', 'love', 'i', 'want', 'you', 'to', 'know', 'lips', 'are', 'movin', 'i', "'ll", 'show', 'you', 'here', 'i', 'lived', 'fireball', '(', 'feat', '.', 'john', 'ryan', ')', 'easy', 'love', 'the', 'feeling', 'i', 'really', 'like', 'you', 'bo', '$', '$', 'sugar', 'focus', 'all', 'about', 'that', 'bass', 'on', 'my', 'mind', 'love', 'me', 'like', 'you', 'broken', 'arrows', 'booty', 'what', 'do', 'you', 'mean', '?', '-', 'acoustic', 'mark', 'my', 'words', 'lay', 'it', 'all', 'on', 'me', 'american', 'oxygen', 'bang', 'bang', 'reality', '-', 'radio', 'edit', 'alive', 'sugar', '(', 'feat', '.', 'francesco', 'yates', ')', 'been', 'you', 'prayer', 'in', 'c', '-', 'robin', 'schulz', 'radio', 'edit', 'see', 'you', 'again', '(', 'feat', '.', 'charlie', 'puth', ')', 'heroes', '(', 'we', 'could', 'be', ')', 'feel', 'the', 'light', '-', 'from', 'the', '``', 'home', "''", 'soundtrack', 'perfect', 'ghosttown', 'bang', 'my', 'head', '(', 'feat', '.', 'sia', '&amp;', 'fetty', 'wap', ')', 'bloodstream', 'living', 'for', 'love', 'baby', 'do', "n't", 'lie', 'do', "n't", 'be', 'so', 'hard', 'on', 'yourself', 'steal', 'my', 'girl', 'celebrate', '(', 'from', 'the', 'original', 'motion', 'picture', '``', 'penguins', 'of', 'madagascar', "''", ')', 'we', 'are', 'here', 'st', 'jude', 'yesterday', '(', 'feat', '.', 'bebe', 'rexha', ')', 'time', 'of', 'our', 'lives', 'sparks', 'mr.', 'put', 'it', 'down', 'legendary', 'lovers', 'spark', 'the', 'fire', 'run', 'run', 'run', 'let', 'me', 'be', 'your', 'lover', 'dangerous', 'l.a.love', '(', 'la', 'la', ')', 'the', 'hills', 'love', 'yourself', 'cake', 'by', 'the', 'ocean', 'do', "n't", 'let', 'me', 'down', 'in', 'the', 'name', 'of', 'love', 'into', 'you', 'this', 'is', 'what', 'you', 'came', 'for', 'million', 'reasons', 'needed', 'me', '7', 'years', 'ca', "n't", 'stop', 'the', 'feeling', '!', '(', 'original', 'song', 'from', 'dreamworks', 'animation', "'s", '``', 'trolls', "''", ')', 'work', 'from', 'home', '(', 'feat', '.', 'ty', 'dolla', '$', 'ign', ')', 'scars', 'to', 'your', 'beautiful', 'like', 'i', "'m", 'gon', 'na', 'lose', 'you', '(', 'feat', '.', 'john', 'legend', ')', 'work', 'stitches', 'me', ',', 'myself', '&amp;', 'i', 'i', 'took', 'a', 'pill', 'in', 'ibiza', '-', 'seeb', 'remix', 'dangerous', 'woman', 'starving', 'shout', 'out', 'to', 'my', 'ex', 'electric', 'love', 'confident', 'too', 'good', 'roses', 'cold', 'water', '(', 'feat', '.', 'justin', 'bieber', '&amp;', 'mø', ')', 'me', 'too', 'light', 'it', 'up', '(', 'feat', '.', 'nyla', '&amp;', 'fuse', 'odg', ')', '[', 'remix', ']', 'ai', "n't", 'your', 'mama', 'close', 'toothbrush', 'all', 'we', 'know', 'final', 'song', 'company', 'hands', 'to', 'myself', 'all', 'i', 'ask', 'just', 'like', 'fire', '(', 'from', 'the', 'original', 'motion', 'picture', '``', 'alice', 'through', 'the', 'looking', 'glass', "''", ')', 'no', 'kill', 'em', 'with', 'kindness', 'cool', 'girl', 'runnin', "'", '(', 'lose', 'it', 'all', ')', 'here', 'perfect', 'illusion', 'pillowtalk', 'out', 'of', 'the', 'woods', 'rise', 'wherever', 'i', 'go', 'body', 'say', 'do', "n't", 'be', 'a', 'fool', 'like', 'i', 'would', 'cheap', 'thrills', 'i', 'got', 'you', 'run', 'away', 'with', 'me', 'cruel', '(', 'feat', '.', 'zayn', ')', 'send', 'my', 'love', '(', 'to', 'your', 'new', 'lover', ')', 'wtf', '(', 'where', 'they', 'from', ')', 'desire', 'when', 'we', 'were', 'young', 'i', 'know', 'what', 'you', 'did', 'last', 'summer', 'wish', 'that', 'you', 'were', 'here', '-', 'from', '\x93miss', 'peregrine\x92s', 'home', 'for', 'peculiar', 'children\x94', 'original', 'motion', 'picture', 'hurts', 'change', 'make', 'me', '...', '(', 'feat', '.', 'g-eazy', ')', 'keeping', 'your', 'head', 'up', 'true', 'colors', 'make', 'me', 'like', 'you', 'champagne', 'problems', 'blown', 'start', 'pep', 'rally', 'higher', 'invitation', 'one', 'call', 'away', '(', 'feat', '.', 'tyga', ')', '-', 'remix', 'beautiful', 'birds', '(', 'feat', '.', 'birdy', ')', 'little', 'lies', 'do', 'you', 'wan', 'na', 'come', 'over', '?', 'burnitup', '!', 'picky', '-', 'remix', 'behind', 'your', 'back', 'million', 'years', 'ago', 'shape', 'of', 'you', 'closer', 'starboy', 'treat', 'you', 'better', 'that', "'s", 'what', 'i', 'like', 'let', 'me', 'love', 'you', 'i', 'feel', 'it', 'coming', 'mercy', 'side', 'to', 'side', 'stay', 'it', 'ai', "n't", 'me', '(', 'with', 'selena', 'gomez', ')', 'malibu', 'something', 'just', 'like', 'this', 'rockabye', '(', 'feat', '.', 'sean', 'paul', '&amp;', 'anne-marie', ')', 'i', 'don\x92t', 'wan', 'na', 'live', 'forever', '(', 'fifty', 'shades', 'darker', ')', 'my', 'way', 'i', "'m", 'the', 'one', '(', 'feat', '.', 'justin', 'bieber', ',', 'quavo', ',', 'chance', 'the', 'rapper', '&amp;', 'lil', 'wayne', ')', 'praying', 'despacito', '-', 'remix', 'the', 'greatest', 'there', 'for', 'you', 'paris', 'crying', 'in', 'the', 'club', 'mama', 'slide', '(', 'feat', '.', 'frank', 'ocean', '&amp;', 'migos', ')', 'swish', 'swish', 'chained', 'to', 'the', 'rhythm', 'cold', '(', 'feat', '.', 'future', ')', 'love', 'reggaetón', 'lento', '(', 'remix', ')', 'all', 'i', 'ask', 'first', 'time', 'the', 'cure', 'how', 'far', 'i', "'ll", 'go', '-', 'from', '``', 'moana', "''", 'bodak', 'yellow', 'rich', 'love', '(', 'with', 'seeb', ')', 'tired', 'came', 'here', 'for', 'love', '24k', 'magic', 'strip', 'that', 'down', '(', 'feat', '.', 'quavo', ')', 'cut', 'to', 'the', 'feeling', 'ok', '-', 'spotify', 'version', 'bon', 'appétit', 'summer', 'bummer', '(', 'feat', '.', 'a', '$', 'ap', 'rocky', '&amp;', 'playboi', 'carti', ')', 'get', 'low', '(', 'with', 'liam', 'payne', ')', 'kissing', 'strangers', 'slow', 'hands', 'younger', 'now', 'body', 'moves', 'reality', '(', 'feat', '.', 'janieck', 'devy', ')', '-', 'radio', 'edit', 'angel', 'touch', '(', 'feat', '.', 'kid', 'ink', ')', 'we', 'do', "n't", 'talk', 'anymore', '-', 'droeloe', 'remix', 'love', 'incredible', '(', 'feat', '.', 'camila', 'cabello', ')', 'no', 'vacancy', '(', 'with', 'sebastián', 'yatra', ')', 'rich', 'boy', 'lust', 'for', 'life', '(', 'with', 'the', 'weeknd', ')', 'greenlight', '(', 'feat', '.', 'flo', 'rida', '&amp;', 'lunchmoney', 'lewis', ')', 'influence', 'remember', 'i', 'told', 'you', 'messin', "'", 'around', 'water', 'under', 'the', 'bridge', 'free', 'me', 'kissing', 'strangers', '-', 'remix', 'a', 'l', 'i', 'e', 'n', 's', 'one', 'kiss', '(', 'with', 'dua', 'lipa', ')', 'havana', '(', 'feat', '.', 'young', 'thug', ')', 'i', 'like', 'it', 'new', 'rules', 'there', "'s", 'nothing', 'holdin', "'", 'me', 'back', 'no', 'tears', 'left', 'to', 'cry', 'idgaf', 'in', 'my', 'blood', 'wolves', 'dusk', 'till', 'dawn', '-', 'radio', 'edit', 'attention', 'electricity', '(', 'with', 'dua', 'lipa', ')', 'love', 'on', 'the', 'brain', 'let', 'me', 'go', '(', 'with', 'alesso', ',', 'florida', 'georgia', 'line', '&amp;', 'watt', ')', 'silence', 'sorry', 'not', 'sorry', 'shallow', '-', 'radio', 'edit', 'these', 'days', 'what', 'lovers', 'do', '(', 'feat', '.', 'sza', ')', 'finesse', '-', 'remix', ';', 'feat', '.', 'cardi', 'b', 'perfect', 'duet', '(', 'ed', 'sheeran', '&amp;', 'beyoncé', ')', 'bad', 'at', 'love', 'him', '&amp;', 'i', '(', 'with', 'halsey', ')', 'friends', '(', 'with', 'bloodpop®', ')', 'wild', 'thoughts', '(', 'feat', '.', 'rihanna', '&amp;', 'bryson', 'tiller', ')', 'my', 'my', 'my', '!', 'capital', 'letters', 'sick', 'boy', 'tequila', 'look', 'what', 'you', 'made', 'me', 'do', 'youth', '(', 'feat', '.', 'khalid', ')', 'bad', 'liar', 'anywhere', 'say', 'something', 'chun-li', 'sign', 'of', 'the', 'times', 'familiar', 'let', 'me', 'supernova', 'nervous', 'first', 'time', 'end', 'game', 'mi', 'gente', '(', 'feat', '.', 'beyoncé', ')', 'lemon', 'for', 'you', '(', 'with', 'rita', 'ora', ')', 'want', 'to', 'what', 'i', 'need', '(', 'feat', '.', 'kehlani', ')', 'wait', 'what', 'about', 'us', 'kissing', 'strangers', '2u', '(', 'feat', '.', 'justin', 'bieber', ')', 'walk', 'on', 'water', '(', 'feat', '.', 'beyoncé', ')', 'this', 'town', 'girls', '(', 'feat', '.', 'cardi', 'b', ',', 'bebe', 'rexha', '&amp;', 'charli', 'xcx', ')', 'move', 'to', 'miami', 'miss', 'you', '(', 'with', 'major', 'lazer', '&amp;', 'tory', 'lanez', ')', 'filthy', 'never', 'be', 'the', 'same', '-', 'radio', 'edit', 'ferrari', 'supplies', 'boom', 'boom', '...', 'ready', 'for', 'it', '?', '-', 'bloodpop®', 'remix', 'drip', '(', 'feat', '.', 'migos', ')', 'tell', 'me', 'you', 'love', 'me', '-', 'notd', 'remix', 'memories', 'lose', 'you', 'to', 'love', 'me', 'someone', 'you', 'loved', 'señorita', 'how', 'do', 'you', 'sleep', '?', 'south', 'of', 'the', 'border', '(', 'feat', '.', 'camila', 'cabello', '&amp;', 'cardi', 'b', ')', 'trampoline', '(', 'with', 'zayn', ')', 'happier', 'truth', 'hurts', 'good', 'as', 'hell', '(', 'feat', '.', 'ariana', 'grande', ')', '-', 'remix', 'higher', 'love', 'only', 'human', 'beautiful', 'people', '(', 'feat', '.', 'khalid', ')', 'sucker', 'do', "n't", 'call', 'me', 'up', 'i', 'do', "n't", 'care', '(', 'with', 'justin', 'bieber', ')', 'talk', '(', 'feat', '.', 'disclosure', ')', 'giant', '(', 'with', "rag'n'bone", 'man', ')', 'takeaway', 'all', 'around', 'the', 'world', '(', 'la', 'la', 'la', ')', 'girls', 'like', 'you', '(', 'feat', '.', 'cardi', 'b', ')', 'call', 'you', 'mine', 'no', 'guidance', '(', 'feat', '.', 'drake', ')', 'antisocial', '(', 'with', 'travis', 'scott', ')', 'taki', 'taki', '(', 'feat', '.', 'selena', 'gomez', ',', 'ozuna', '&amp;', 'cardi', 'b', ')', 'con', 'calma', '-', 'remix', 'find', 'u', 'again', '(', 'feat', '.', 'camila', 'cabello', ')', 'cross', 'me', '(', 'feat', '.', 'chance', 'the', 'rapper', '&amp;', 'pnb', 'rock', ')', 'no', 'brainer', '(', 'feat', '.', 'justin', 'bieber', ',', 'chance', 'the', 'rapper', '&amp;', 'quavo', ')', 'nothing', 'breaks', 'like', 'a', 'heart', '(', 'feat', '.', 'miley', 'cyrus', ')', 'kills', 'you', 'slowly']</code></pre>
+</div>
+</div>
+<div class="cell" data-scrolled="true" data-execution_count="160">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> score_words(words):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  positive <span class="op">=</span> []</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  negative <span class="op">=</span> []</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> words:</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> sia.polarity_scores(i)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> scores[<span class="st">"compound"</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      positive.append(i)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> scores[<span class="st">"compound"</span>] <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>      negative.append(i)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> positive, negative</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>positive, negative <span class="op">=</span> score_words(words)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(negative)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(positive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['bad', 'broken', 'dirty', 'misery', 'blah', 'blah', 'blah', 'broken', 'bitch', 'hard', 'lost', 'hell', 'trouble', 'fire', 'kill', 'stop', 'stop', 'worry', 'attack', 'die', 'sadness', 'lose', 'bitch', 'lose', 'hard', 'killed', 'heartbreaker', 'fire', 'hunger', 'crazy', 'foolish', 'freak', 'rude', 'shake', 'problem', 'dirty', 'killed', 'forget', 'drunk', 'weapons', 'bad', 'sorry', 'forget', 'blame', 'jealous', 'hurt', 'lose', 'broken', 'hard', 'steal', 'fire', 'dangerous', 'stop', 'lose', 'dangerous', 'starving', 'fire', 'no', 'kill', 'lose', 'fool', 'cruel', 'wtf', 'hurts', 'problems', 'lies', 'crying', 'tired', 'cut', 'bummer', 'low', 'no', 'no', 'tears', 'cry', 'sorry', 'sorry', 'bad', 'sick', 'bad', 'liar', 'nervous', 'miss', 'lose', 'hurts', 'hell', 'sucker', 'no', 'no', 'kills']
+['love', 'romance', 'dynamite', 'like', 'love', 'want', 'like', 'dream', 'kiss', 'ha', 'sexy', 'original', 'original', 'love', 'like', 'like', 'love', 'top', 'best', 'party', 'good', 'yeah', 'sexy', 'glory', 'please', 'love', 'cheers', 'super', 'heaven', 'paradise', 'beautiful', 'love', 'like', 'love', 'stronger', 'good', 'glad', 'beauty', 'love', 'party', 'kiss', 'fame', 'lucky', 'clarity', 'best', 'kiss', 'sweet', 'brave', 'beautiful', 'love', 'love', 'love', 'play', 'love', 'party', 'like', 'love', 'applause', 'beautiful', 'like', 'happy', 'treasure', 'love', 'adore', 'love', 'good', 'perfect', 'love', 'yeah', 'party', 'grey', 'love', 'love', 'love', 'like', 'grey', 'grey', 'grey', 'want', 'want', 'love', 'love', 'worth', 'free', 'dear', 'care', 'love', 'like', 'love', 'want', 'easy', 'love', 'feeling', 'like', 'love', 'like', 'alive', 'heroes', 'perfect', 'love', 'celebrate', 'original', 'lovers', 'spark', 'lover', 'love', 'love', 'feeling', 'original', 'ty', 'beautiful', 'like', 'love', 'confident', 'good', 'like', 'original', 'kindness', 'cool', 'perfect', 'like', 'thrills', 'love', 'lover', 'desire', 'wish', 'peculiar', 'original', 'true', 'like', 'champagne', 'beautiful', 'treat', 'better', 'like', 'love', 'mercy', 'like', 'chance', 'praying', 'greatest', 'love', 'rich', 'love', 'love', 'feeling', 'ok', 'kissing', 'love', 'rich', 'free', 'kissing', 'kiss', 'like', 'love', 'lovers', 'perfect', 'love', 'friends', 'want', 'kissing', 'ready', 'love', 'love', 'loved', 'happier', 'truth', 'good', 'love', 'beautiful', 'care', 'like', 'chance', 'chance', 'like']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="162">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>most_positive <span class="op">=</span> nltk.FreqDist(positive).most_common(<span class="dv">15</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.barh([x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> most_positive],[x[<span class="dv">1</span>] <span class="cf">for</span> x <span class="kw">in</span> most_positive], color <span class="op">=</span> <span class="st">"lightsteelblue"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Notebook Draft_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="164">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>most_negative <span class="op">=</span> nltk.FreqDist(negative).most_common(<span class="dv">15</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.barh([x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> most_negative],[x[<span class="dv">1</span>] <span class="cf">for</span> x <span class="kw">in</span> most_negative], color <span class="op">=</span> <span class="st">"maroon"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Notebook Draft_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The above data analysis can determine what kind of titles are frequently used for popular songs. Negative words appear far less often in the “title” column, as demonstrated by the maroon figure. Love appears around 40 times in the titles of the most popular tracks, which indicates that it is a commonly used word in song titles. While I cannot deduce whether love is used in a positive or negative context within the title, the use of the word alone is enough to hint towards either a romantic or breakup type of song.</p>
+<p>Here I will include more in depth analysis about the words in the song titles, and further discuss the data visualizations listed below. I hope to better understand what components go into a popular song, and to determine if there are any correlations between variables.</p>
+<section id="data-visualizations-to-include" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualizations-to-include">Data Visualizations to Include</h3>
+<ul>
+<li>More scatter plots comparing popularity to other variables
+<ul>
+<li>pop vs.&nbsp;dnce</li>
+<li>pop vs.&nbsp;bpm</li>
+<li>pop vs.&nbsp;val</li>
+</ul></li>
+<li>Katy Perry’s (or a specific artist) song trends
+<ul>
+<li>year vs.&nbsp;pop</li>
+<li>trends in valence</li>
+</ul></li>
+<li>Top songs for 2010: trends in valence/dnce</li>
+<li>Dance pop songs: dnce vs.&nbsp;bpm
+<ul>
+<li>possibly comparing these with another genre, or comparing 2 smaller genres to see if there is a difference in overall trends?</li>
+</ul></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
