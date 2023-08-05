@@ -2,11 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/post-with-code/index.html",
       "/posts/Final Project Notebook Draft.html",
       "/posts/Final Project Notebook Blog.html",
-      "/posts/welcome/index.html",
-      "/posts/Topics.html"
+      "/posts/welcome/index.html"
     ]
   }
 ]
