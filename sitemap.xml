@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ktsakai.github.io/Final-Project-Blog/index.html</loc>
-    <lastmod>2023-07-31T11:30:50.029Z</lastmod>
+    <lastmod>2023-08-05T00:18:00.367Z</lastmod>
   </url>
   <url>
     <loc>https://ktsakai.github.io/Final-Project-Blog/posts/post-with-code/index.html</loc>
-    <lastmod>2023-07-31T11:30:48.732Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ktsakai.github.io/Final-Project-Blog/posts/welcome/index.html</loc>
-    <lastmod>2023-07-31T11:30:46.775Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ktsakai.github.io/Final-Project-Blog/posts/Topics.html</loc>
-    <lastmod>2023-07-31T11:30:46.284Z</lastmod>
+    <lastmod>2023-08-05T00:17:58.854Z</lastmod>
   </url>
   <url>
     <loc>https://ktsakai.github.io/Final-Project-Blog/posts/Final Project Notebook Draft.html</loc>
-    <lastmod>2023-07-31T11:30:48.271Z</lastmod>
+    <lastmod>2023-08-05T00:17:55.956Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ktsakai.github.io/Final-Project-Blog/posts/Topics.html</loc>
+    <lastmod>2023-08-05T00:17:54.236Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ktsakai.github.io/Final-Project-Blog/posts/welcome/index.html</loc>
+    <lastmod>2023-08-05T00:17:54.808Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ktsakai.github.io/Final-Project-Blog/posts/Final Project Notebook Blog.html</loc>
+    <lastmod>2023-08-05T00:17:58.356Z</lastmod>
   </url>
   <url>
     <loc>https://ktsakai.github.io/Final-Project-Blog/about.html</loc>
-    <lastmod>2023-07-31T11:30:49.204Z</lastmod>
+    <lastmod>2023-08-05T00:17:59.423Z</lastmod>
   </url>
 </urlset>

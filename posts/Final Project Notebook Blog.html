@@ -175,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">July 30, 2023</p>
+        <p class="date-modified">August 3, 2023</p>
       </div>
     </div>
       
@@ -193,14 +193,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Kaelyn Sakai • July 2023</p>
-<section id="visualization-and-analysis-of-top-billboard-songs" class="level1">
-<h1>Visualization and Analysis of Top Billboard Songs</h1>
+<section id="visualization-and-analysis-of-top-spotify-songs" class="level1">
+<h1>Visualization and Analysis of Top Spotify Songs</h1>
 <section id="project-introduction" class="level2">
 <h2 class="anchored" data-anchor-id="project-introduction">Project Introduction</h2>
-<p>The dataset I that I plan on investigating further is the <strong><a href="https://www.kaggle.com/datasets/leonardopena/top-spotify-songs-from-20102019-by-year?resource=download">Spotify Top Songs Data</a></strong> from Kaggle. The data contains information about a variety of Billboard top songs. I wanted to analyze this, because I have always been interested in music trends and music in general. Music throughout history is consistently changing, and exploring this dataset can help to further understand the types of songs that have been popular recently. The main research question I will be addressing is, “<strong>What types of songs were the most popular in the 2010’s and can correlations be drawn between the different variables that contribute to the song popularity?</strong>”.</p>
+<p>The dataset that I plan on investigating further is the <strong><a href="https://www.kaggle.com/datasets/leonardopena/top-spotify-songs-from-20102019-by-year?resource=download">Spotify Top Songs Data</a></strong> from Kaggle. The data contains information about a variety of Spotify top songs. I wanted to analyze this, because I have always been interested in music trends and music in general. Music throughout history is consistently changing, and exploring this dataset can help to further understand the types of songs that have been popular recently. The main research question I will be addressing is, “<strong>Are there visible trends and themes in the titles and features of top songs and how do these trends contribute to the past and future popularity of specific types of songs?“</strong>. The study will focus on data about the top songs on the Spotify charts, investigating a variety of ratings such as danceability, valence, energy that may influence the popularity of a song. Understanding how the variables relate to each other can lead to further understanding of what contributes towards a popular song. Looking at the data can also determine if there truly are patterns seen in music trends, or if popularity is unrelated to any of the song variables. By exploring these datasets, I hope to investigate questions that relate to the longevity of top Spotify songs. With the emergence of music trends through social media and new popular genres, analyzing recent past trends can help to further understand music popularity.</p>
+<p>I am specifically interested in studying music for this analysis, because I am constantly listening to music and consuming music related media. While I have not completed any research projects about music in the past, I am excited to learn more about the subject.</p>
 </section>
-<section id="data-exploration-and-introduction" class="level2">
-<h2 class="anchored" data-anchor-id="data-exploration-and-introduction">Data Exploration and Introduction</h2>
+<section id="methods-data-exploration-and-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="methods-data-exploration-and-analysis">Methods: Data Exploration and Analysis</h2>
 <p>This data contains some of the top songs between the years 2010 through 2019. This is a brief overview of the data and what each variable represents.</p>
 <table class="table">
 <colgroup>
@@ -220,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: center;">year</td>
-<td style="text-align: left;">The year the song appeared on Billboard</td>
+<td style="text-align: left;">The year the song appeared on Spotify</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">bpm</td>
@@ -264,20 +265,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'spotify.csv'</span>,encoding<span class="op">=</span><span class="st">'latin-1'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>FileNotFoundError: [Errno 2] No such file or directory: 'spotify.csv'</code></pre>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'spotify-Copy1.csv'</span>,encoding<span class="op">=</span><span class="st">'latin-1'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>The table above shows an overview of the dataset I will be using. There are 603 songs included, with 14 columns describing them.</p>
-<div class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
+<h3 align="center" class="anchored">
+Overall Variable Descriptions for All Data (Table 1 Below)
+</h3>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -426,62 +426,703 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,x<span class="op">=</span><span class="st">'year'</span>,y<span class="op">=</span><span class="st">'val'</span>,color<span class="op">=</span><span class="st">'lightblue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="85">
+<h3 align="center" class="anchored">
+Year vs.&nbsp;Valence Score Scatter Plot (Figure 1 Below)
+</h3>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,x<span class="op">=</span><span class="st">'year'</span>,y<span class="op">=</span><span class="st">'val'</span>,color<span class="op">=</span><span class="st">'lightblue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>&lt;Axes: xlabel='year', ylabel='val'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final Project Notebook Draft_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
+<p><img src="Final Project Notebook Blog_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="105">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> df[<span class="st">'artist'</span>].value_counts().nlargest(<span class="dv">15</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>c.plot(kind<span class="op">=</span><span class="st">'bar'</span>,color<span class="op">=</span><span class="st">'pink'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="105">
+<p>The figure above represents the range of valence for the songs in each year provided in the dataset. As explained in the chart above, the valence of a song is the metric that measures the happiness or mood score.</p>
+<h3 align="center" class="anchored">
+Average and Standard Deviation of Song Variables for Each Year (Table 2 Below)
+</h3>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2010</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x.describe().loc[[<span class="st">'mean'</span>, <span class="st">'std'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>26.000000</td>
+<td>2010.0</td>
+<td>122.058824</td>
+<td>77.901961</td>
+<td>64.529412</td>
+<td>-4.901961</td>
+<td>21.176471</td>
+<td>57.000000</td>
+<td>229.803922</td>
+<td>11.627451</td>
+<td>8.882353</td>
+<td>64.254902</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>14.866069</td>
+<td>0.0</td>
+<td>25.308032</td>
+<td>14.953601</td>
+<td>14.412984</td>
+<td>1.360219</td>
+<td>17.120404</td>
+<td>22.001818</td>
+<td>33.858541</td>
+<td>19.993960</td>
+<td>9.322332</td>
+<td>13.227007</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>xi <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2011</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>xi.describe().loc[[<span class="st">'mean'</span>, <span class="st">'std'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>78.000000</td>
+<td>2011.0</td>
+<td>119.075472</td>
+<td>74.886792</td>
+<td>63.641509</td>
+<td>-5.018868</td>
+<td>20.943396</td>
+<td>53.698113</td>
+<td>242.566038</td>
+<td>13.339623</td>
+<td>9.660377</td>
+<td>61.867925</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>15.443445</td>
+<td>0.0</td>
+<td>20.946681</td>
+<td>15.548510</td>
+<td>11.267882</td>
+<td>1.434339</td>
+<td>15.083632</td>
+<td>20.835053</td>
+<td>36.942528</td>
+<td>21.341494</td>
+<td>9.169228</td>
+<td>16.058831</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>xii <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2012</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>xii.describe().loc[[<span class="st">'mean'</span>, <span class="st">'std'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>122.000000</td>
+<td>2012.0</td>
+<td>121.085714</td>
+<td>75.485714</td>
+<td>65.714286</td>
+<td>-4.857143</td>
+<td>15.828571</td>
+<td>64.171429</td>
+<td>224.400000</td>
+<td>4.857143</td>
+<td>5.80000</td>
+<td>67.771429</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>10.246951</td>
+<td>0.0</td>
+<td>21.066242</td>
+<td>12.134955</td>
+<td>9.838614</td>
+<td>1.458098</td>
+<td>10.427581</td>
+<td>19.008490</td>
+<td>24.236822</td>
+<td>9.953252</td>
+<td>2.65463</td>
+<td>14.528037</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xiii <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2013</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>xiii.describe().loc[[<span class="st">'mean'</span>, <span class="st">'std'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>175.000000</td>
+<td>2013.0</td>
+<td>121.676056</td>
+<td>73.873239</td>
+<td>62.042254</td>
+<td>-5.140845</td>
+<td>19.718310</td>
+<td>53.183099</td>
+<td>234.492958</td>
+<td>10.323944</td>
+<td>8.309859</td>
+<td>63.985915</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>20.639767</td>
+<td>0.0</td>
+<td>26.517258</td>
+<td>15.396595</td>
+<td>11.580077</td>
+<td>1.658707</td>
+<td>14.007328</td>
+<td>21.234951</td>
+<td>42.506427</td>
+<td>15.660482</td>
+<td>7.652435</td>
+<td>12.864673</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>xiv <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2014</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>xiii.describe().loc[[<span class="st">'mean'</span>, <span class="st">'std'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>175.000000</td>
+<td>2013.0</td>
+<td>121.676056</td>
+<td>73.873239</td>
+<td>62.042254</td>
+<td>-5.140845</td>
+<td>19.718310</td>
+<td>53.183099</td>
+<td>234.492958</td>
+<td>10.323944</td>
+<td>8.309859</td>
+<td>63.985915</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>20.639767</td>
+<td>0.0</td>
+<td>26.517258</td>
+<td>15.396595</td>
+<td>11.580077</td>
+<td>1.658707</td>
+<td>14.007328</td>
+<td>21.234951</td>
+<td>42.506427</td>
+<td>15.660482</td>
+<td>7.652435</td>
+<td>12.864673</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>xv <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2015</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>xv.describe().loc[[<span class="st">'mean'</span>, <span class="st">'std'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>316.000000</td>
+<td>2015.0</td>
+<td>119.768421</td>
+<td>70.336842</td>
+<td>63.663158</td>
+<td>-5.621053</td>
+<td>18.305263</td>
+<td>52.526316</td>
+<td>223.368421</td>
+<td>16.600000</td>
+<td>7.052632</td>
+<td>64.568421</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>27.568098</td>
+<td>0.0</td>
+<td>26.789746</td>
+<td>15.790255</td>
+<td>15.005397</td>
+<td>1.638493</td>
+<td>13.969628</td>
+<td>24.575910</td>
+<td>31.089457</td>
+<td>23.090663</td>
+<td>5.617920</td>
+<td>14.352443</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>xvi <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2016</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>xvi.describe().loc[[<span class="st">'mean'</span>, <span class="st">'std'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>403.5000</td>
+<td>2016.0</td>
+<td>114.325000</td>
+<td>67.237500</td>
+<td>63.325000</td>
+<td>-6.712500</td>
+<td>17.737500</td>
+<td>45.150000</td>
+<td>220.225000</td>
+<td>15.875000</td>
+<td>8.362500</td>
+<td>64.162500</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>23.2379</td>
+<td>0.0</td>
+<td>24.059933</td>
+<td>18.687465</td>
+<td>14.102496</td>
+<td>6.334942</td>
+<td>13.144517</td>
+<td>21.101383</td>
+<td>32.699234</td>
+<td>23.247363</td>
+<td>6.531799</td>
+<td>16.237512</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>xvii <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2017</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>xvii.describe().loc[[<span class="st">'mean'</span>, <span class="st">'std'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>476.00000</td>
+<td>2017.0</td>
+<td>116.800000</td>
+<td>69.169231</td>
+<td>65.369231</td>
+<td>-5.615385</td>
+<td>15.369231</td>
+<td>52.276923</td>
+<td>222.169231</td>
+<td>16.600000</td>
+<td>9.784615</td>
+<td>69.015385</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>18.90767</td>
+<td>0.0</td>
+<td>27.667784</td>
+<td>15.353714</td>
+<td>13.759734</td>
+<td>1.868257</td>
+<td>10.263055</td>
+<td>21.697140</td>
+<td>28.243677</td>
+<td>20.081708</td>
+<td>9.148928</td>
+<td>10.982219</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>xviii <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2018</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>xviii.describe().loc[[<span class="st">'mean'</span>, <span class="st">'std'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>540.500000</td>
+<td>2018.0</td>
+<td>114.593750</td>
+<td>65.468750</td>
+<td>67.203125</td>
+<td>-5.671875</td>
+<td>14.750000</td>
+<td>48.765625</td>
+<td>217.187500</td>
+<td>12.781250</td>
+<td>8.625000</td>
+<td>72.43750</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>18.618987</td>
+<td>0.0</td>
+<td>22.458935</td>
+<td>12.989579</td>
+<td>13.148939</td>
+<td>1.426002</td>
+<td>10.222912</td>
+<td>21.838325</td>
+<td>33.112063</td>
+<td>17.942119</td>
+<td>6.913295</td>
+<td>9.87039</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>xix <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2019</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>xix.describe().loc[[<span class="st">'mean'</span>, <span class="st">'std'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">bpm</th>
+<th data-quarto-table-cell-role="th">nrgy</th>
+<th data-quarto-table-cell-role="th">dnce</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">live</th>
+<th data-quarto-table-cell-role="th">val</th>
+<th data-quarto-table-cell-role="th">dur</th>
+<th data-quarto-table-cell-role="th">acous</th>
+<th data-quarto-table-cell-role="th">spch</th>
+<th data-quarto-table-cell-role="th">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>588.000000</td>
+<td>2019.0</td>
+<td>112.451613</td>
+<td>64.741935</td>
+<td>69.709677</td>
+<td>-5.774194</td>
+<td>15.161290</td>
+<td>50.806452</td>
+<td>200.645161</td>
+<td>21.741935</td>
+<td>8.129032</td>
+<td>84.354839</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>9.092121</td>
+<td>0.0</td>
+<td>19.438516</td>
+<td>17.395340</td>
+<td>11.498387</td>
+<td>1.802030</td>
+<td>14.154144</td>
+<td>22.660420</td>
+<td>26.700248</td>
+<td>22.492914</td>
+<td>7.017796</td>
+<td>8.292761</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The tables above represent the average and standard deviation scores for all of the songs in the specified years.</p>
+<h3 align="center" class="anchored">
+Top 15 Artists with Most Top Spotify Songs vs.&nbsp;Number of Top Songs (Figure 2 Below)
+</h3>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> df[<span class="st">'artist'</span>].value_counts().nlargest(<span class="dv">15</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>c.plot(kind<span class="op">=</span><span class="st">'bar'</span>,color<span class="op">=</span><span class="st">'pink'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>&lt;Axes: &gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final Project Notebook Draft_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
+<p><img src="Final Project Notebook Blog_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="115">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'scatter'</span>,x<span class="op">=</span><span class="st">'nrgy'</span>,y<span class="op">=</span><span class="st">'pop'</span>,color<span class="op">=</span><span class="st">'purple'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="115">
-<pre><code>&lt;Axes: xlabel='nrgy', ylabel='pop'&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="Final Project Notebook Draft_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
-</div>
-</div>
+<p>For the figure above, a narrowed down selection of the artists were required to create a comprehensive bar graph. Additional code was necessary to filter out the artists to include. To do this, I used a command to filter the column of “artist” in the dataset, and to include only the 15 artists that appeared most frequently in the list. The number of times these artists appeared in the column was recorded and plotted on the graph.</p>
+<h3 align="center" class="anchored">
+Top 15 Genres vs.&nbsp;Number of Top Songs from the Genre (Figure 3 Below)
+</h3>
 <div class="cell" data-execution_count="125">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> df[<span class="st">'top genre'</span>].value_counts().nlargest(<span class="dv">15</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>g.plot(kind<span class="op">=</span><span class="st">'bar'</span>,color<span class="op">=</span><span class="st">'mediumturquoise'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> df[<span class="st">'top genre'</span>].value_counts().nlargest(<span class="dv">15</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>g.plot(kind<span class="op">=</span><span class="st">'bar'</span>,color<span class="op">=</span><span class="st">'mediumturquoise'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="125">
 <pre><code>&lt;Axes: &gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Final Project Notebook Draft_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+<p><img src="Final Project Notebook Blog_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-</section>
-<section id="data-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
-<div class="cell" data-execution_count="130">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.sentiment <span class="im">import</span> vader</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> opinion_lexicon</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.stem.porter <span class="im">import</span> PorterStemmer</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'punkt'</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'vader_lexicon'</span>)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'opinion_lexicon'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Similar to the figure for the most frequently appearing artists, the data in the graph above needed to be filtered in order to maximize the clarity of the results. A similar command was run to distinguish the top 15 most frequently appearing genres, and these were plotted on a bar graph to demonstrate the amount of times a top song from the genre appeared in the dataset.</p>
+<h3 align="center" class="anchored">
+Katy Perry Songs: Year vs.&nbsp;Popularity (Figure 4 Below)
+</h3>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df[df[<span class="st">'artist'</span>].<span class="bu">str</span>.contains(<span class="st">"Katy Perry"</span>)]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df2.plot(x<span class="op">=</span><span class="st">'year'</span>,y<span class="op">=</span><span class="st">'val'</span>,kind<span class="op">=</span><span class="st">'scatter'</span>,color<span class="op">=</span><span class="st">'turquoise'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>&lt;Axes: xlabel='year', ylabel='val'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Final Project Notebook Blog_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The scatterplot above depicts the valence scores and the year of the song for Katy Perry’s 17 songs in the dataset.</p>
+<h2 align="center" class="anchored">
+Primary Data Analysis
+</h2>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.sentiment <span class="im">import</span> vader</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> opinion_lexicon</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.stem.porter <span class="im">import</span> PorterStemmer</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'punkt'</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'vader_lexicon'</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'opinion_lexicon'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>[nltk_data] Downloading package punkt to /home/jovyan/nltk_data...
 [nltk_data]   Package punkt is already up-to-date!
@@ -494,95 +1135,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [nltk_data]     /home/jovyan/nltk_data...
 [nltk_data]   Package opinion_lexicon is already up-to-date!</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="130">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="154">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sia <span class="op">=</span> vader.SentimentIntensityAnalyzer()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sia <span class="op">=</span> vader.SentimentIntensityAnalyzer()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="158">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>col_list <span class="op">=</span> df[<span class="st">"title"</span>].values.tolist()</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="st">' '</span>.join(col_list)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>title_lower <span class="op">=</span> title.lower()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-scrolled="true" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>col_list <span class="op">=</span> df[<span class="st">"title"</span>].values.tolist()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="st">' '</span>.join(col_list)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>title_lower <span class="op">=</span> title.lower()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="159">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize, sent_tokenize</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tokenize(string):</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  sent <span class="op">=</span> sent_tokenize(title_lower)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  words <span class="op">=</span> []</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> s <span class="kw">in</span> sent:</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> w <span class="kw">in</span> word_tokenize(s):</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>          words.append(w)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> words</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> tokenize(title_lower)</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-scrolled="true" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize, sent_tokenize</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tokenize(string):</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  sent <span class="op">=</span> sent_tokenize(title_lower)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  words <span class="op">=</span> []</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> s <span class="kw">in</span> sent:</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> w <span class="kw">in</span> word_tokenize(s):</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>          words.append(w)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> words</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> tokenize(title_lower)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['hey', ',', 'soul', 'sister', 'love', 'the', 'way', 'you', 'lie', 'tik', 'tok', 'bad', 'romance', 'just', 'the', 'way', 'you', 'are', 'baby', 'dynamite', 'secrets', 'empire', 'state', 'of', 'mind', '(', 'part', 'ii', ')', 'broken', 'down', 'only', 'girl', '(', 'in', 'the', 'world', ')', 'club', 'ca', "n't", 'handle', 'me', '(', 'feat', '.', 'david', 'guetta', ')', 'marry', 'you', 'cooler', 'than', 'me', '-', 'single', 'mix', 'telephone', 'like', 'a', 'g6', 'omg', '(', 'feat', '.', 'will.i.am', ')', 'eenie', 'meenie', 'the', 'time', '(', 'dirty', 'bit', ')', 'alejandro', 'your', 'love', 'is', 'my', 'drug', 'meet', 'me', 'halfway', 'whataya', 'want', 'from', 'me', 'take', 'it', 'off', 'misery', 'all', 'the', 'right', 'moves', 'animal', 'naturally', 'i', 'like', 'it', 'teenage', 'dream', 'california', 'gurls', '3', 'my', 'first', 'kiss', '-', 'feat', '.', 'ke', '$', 'ha', 'blah', 'blah', 'blah', '(', 'feat', '.', '3oh', '!', '3', ')', 'imma', 'be', 'try', 'sleeping', 'with', 'a', 'broken', 'heart', 'sexy', 'bitch', '(', 'feat', '.', 'akon', ')', 'bound', 'to', 'you', '-', 'burlesque', 'original', 'motion', 'picture', 'soundtrack', 'if', 'i', 'had', 'you', 'rock', 'that', 'body', 'dog', 'days', 'are', 'over', 'something', "'s", 'got', 'a', 'hold', 'on', 'me', '-', 'burlesque', 'original', 'motion', 'picture', 'soundtrack', 'does', "n't", 'mean', 'anything', 'hard', 'loca', 'you', 'lost', 'me', 'not', 'myself', 'tonight', 'written', 'in', 'the', 'stars', '(', 'feat', '.', 'eric', 'turner', ')', 'dj', 'got', 'us', 'fallin', "'", 'in', 'love', '(', 'feat', '.', 'pitbull', ')', 'castle', 'walls', '(', 'feat', '.', 'christina', 'aguilera', ')', 'break', 'your', 'heart', 'hello', 'a', 'thousand', 'years', 'someone', 'like', 'you', 'give', 'me', 'everything', 'just', 'the', 'way', 'you', 'are', 'rolling', 'in', 'the', 'deep', 'run', 'the', 'world', '(', 'girls', ')', 'moves', 'like', 'jagger', '-', 'studio', 'recording', 'from', 'the', 'voice', 'performance', 'love', 'on', 'top', 'grenade', 'tonight', 'tonight', 'what', 'the', 'hell', 'born', 'this', 'way', 'monster', 'marry', 'you', 'best', 'thing', 'i', 'never', 'had', 'party', 'rock', 'anthem', 'we', 'r', 'who', 'we', 'r', 'price', 'tag', 'good', 'life', 'just', 'can\x92t', 'get', 'enough', 'on', 'the', 'floor', 'what', "'s", 'my', 'name', '?', 'yeah', '3x', 'without', 'you', '(', 'feat', '.', 'usher', ')', 'sexy', 'and', 'i', 'know', 'it', 'the', 'edge', 'of', 'glory', 'e.t', '.', 'till', 'the', 'world', 'ends', 'i', 'wan', 'na', 'go', 'blow', 'you', 'and', 'i', 'judas', 'tonight', '(', 'i', "'m", 'fuckin', "'", 'you', ')', 'please', 'do', "n't", 'go', 'we', 'found', 'love', 'marry', 'the', 'night', '1+1', 'hold', 'it', 'against', 'me', 'i', "'m", 'into', 'you', 'papi', 'cheers', '(', 'drink', 'to', 'that', ')', 's', '&amp;', 'm', 'remix', 'written', 'in', 'the', 'stars', '(', 'feat', '.', 'eric', 'turner', ')', 'jar', 'of', 'hearts', 'castle', 'walls', '(', 'feat', '.', 'christina', 'aguilera', ')', 'turning', 'page', 'super', 'bass', 'raise', 'your', 'glass', 'invading', 'my', 'mind', 'moment', '4', 'life', '-', 'album', 'version', '(', 'edited', ')', 'last', 'friday', 'night', '(', 't.g.i.f', '.', ')', 'firework', 'muny', '-', 'album', 'version', '(', 'edited', ')', 'titanium', '(', 'feat', '.', 'sia', ')', 'locked', 'out', 'of', 'heaven', 'paradise', 'payphone', 'what', 'makes', 'you', 'beautiful', 'i', 'knew', 'you', 'were', 'trouble', '.', 'call', 'me', 'maybe', 'love', 'you', 'like', 'a', 'love', 'song', 'set', 'fire', 'to', 'the', 'rain', 'we', 'are', 'never', 'ever', 'getting', 'back', 'together', 'stronger', '(', 'what', 'does', "n't", 'kill', 'you', ')', 'try', 'starships', 'one', 'more', 'night', 'good', 'time', 'glad', 'you', 'came', 'beauty', 'and', 'a', 'beat', 'international', 'love', 'some', 'nights', 'boyfriend', 'part', 'of', 'me', 'domino', 'where', 'have', 'you', 'been', 'wide', 'awake', 'the', 'one', 'that', 'got', 'away', 'dance', 'again', 'turn', 'up', 'the', 'music', 'lights', '-', 'single', 'version', 'we', 'are', 'young', '(', 'feat', '.', 'janelle', 'monáe', ')', 'diamonds', 'do', "n't", 'stop', 'the', 'party', '(', 'feat', '.', 'tjr', ')', 'you', 'da', 'one', 'stereo', 'hearts', '(', 'feat', '.', 'adam', 'levine', ')', 'it', 'will', 'rain', 'blow', 'me', '(', 'one', 'last', 'kiss', ')', 'underneath', 'the', 'tree', 'wake', 'me', 'up', 'story', 'of', 'my', 'life', 'just', 'give', 'me', 'a', 'reason', '(', 'feat', '.', 'nate', 'ruess', ')', 'hall', 'of', 'fame', 'roar', 'we', 'ca', "n't", 'stop', 'do', "n't", 'you', 'worry', 'child', '-', 'radio', 'edit', 'get', 'lucky', '(', 'feat', '.', 'pharrell', 'williams', '&amp;', 'nile', 'rodgers', ')', '-', 'radio', 'edit', 'wrecking', 'ball', 'impossible', 'blurred', 'lines', 'heart', 'attack', 'we', 'are', 'never', 'ever', 'getting', 'back', 'together', 'die', 'young', 'clarity', 'summertime', 'sadness', '(', 'lana', 'del', 'rey', 'vs.', 'cedric', 'gervais', ')', '-', 'cedric', 'gervais', 'remix', 'under', 'control', 'everybody', 'talks', 'hold', 'on', ',', 'we', "'re", 'going', 'home', 'best', 'song', 'ever', 'kiss', 'you', 'sweet', 'nothing', '(', 'feat', '.', 'florence', 'welch', ')', 'lose', 'yourself', 'to', 'dance', 'work', 'bitch', 'brave', 'ca', "n't", 'hold', 'us', '(', 'feat', '.', 'ray', 'dalton', ')', 'feel', 'this', 'moment', '(', 'feat', '.', 'christina', 'aguilera', ')', 'beneath', 'your', 'beautiful', 'let', 'me', 'love', 'you', '(', 'until', 'you', 'learn', 'to', 'love', 'yourself', ')', 'thrift', 'shop', '(', 'feat', '.', 'wanz', ')', 'if', 'i', 'lose', 'myself', '-', 'alesso', 'vs', 'onerepublic', 'the', 'way', 'suit', '&amp;', 'tie', '#', 'thatpower', 'i', 'love', 'it', '(', 'feat', '.', 'charli', 'xcx', ')', 'play', 'hard', '(', 'feat', '.', 'ne-yo', '&amp;', 'akon', ')', '-', 'new', 'edit', 'daylight', 'love', 'somebody', 'a', 'little', 'party', 'never', 'killed', 'nobody', '(', 'all', 'we', 'got', ')', 'move', 'walks', 'like', 'rihanna', 'rock', 'n', 'roll', 'heartbreaker', 'mirrors', '-', 'radio', 'edit', 'next', 'to', 'me', 'made', 'in', 'the', 'usa', 'clown', 'girl', 'on', 'fire', '(', 'feat', '.', 'nicki', 'minaj', ')', '-', 'inferno', 'version', 'tko', 'come', '&amp;', 'get', 'it', 'live', 'it', 'up', 'we', 'own', 'the', 'night', 'atlas', '-', 'from', '\x93the', 'hunger', 'games', ':', 'catching', 'fire\x94', 'soundtrack', 'what', 'about', 'love', 'take', 'back', 'the', 'night', 'applause', 'anything', 'could', 'happen', 'finally', 'found', 'you', 'pom', 'poms', '#', 'beautiful', 'how', 'ya', 'doin', "'", '?', '(', 'feat', '.', 'missy', 'elliott', ')', 'crazy', 'kids', '(', 'feat', '.', 'will.i.am', ')', 'ooh', 'la', 'la', '(', 'from', '``', 'the', 'smurfs', '2', "''", ')', 'people', 'like', 'us', 'overdose', 'right', 'now', '-', 'dyro', 'radio', 'edit', 'give', 'it', '2', 'u', 'foolish', 'games', 'outta', 'nowhere', '(', 'feat', '.', 'danny', 'mercer', ')', 'freak', 'all', 'of', 'me', 'stay', 'with', 'me', 'summer', 'happy', '-', 'from', '``', 'despicable', 'me', '2', "''", 'rude', 'shake', 'it', 'off', 'dark', 'horse', 'hey', 'brother', 'maps', 'treasure', 'let', 'her', 'go', 'problem', 'pompeii', 'team', 'love', 'me', 'again', 'latch', 'adore', 'you', 'love', 'never', 'felt', 'so', 'good', 'burn', 'she', 'looks', 'so', 'perfect', 'fancy', 'talk', 'dirty', '(', 'feat', '.', '2', 'chainz', ')', 'gorilla', 'human', 'young', 'girls', 'wiggle', '(', 'feat', '.', 'snoop', 'dogg', ')', 'love', 'runs', 'out', 'this', 'is', 'how', 'we', 'do', 'mmm', 'yeah', '(', 'feat', '.', 'pitbull', ')', 'a', 'little', 'party', 'never', 'killed', 'nobody', '(', 'all', 'we', 'got', ')', '#', 'selfie', 'partition', 'birthday', 'g.u.y', '.', 'stay', 'the', 'night', '-', 'featuring', 'hayley', 'williams', 'of', 'paramore', 'let', 'it', 'go', '-', 'from', '``', 'frozen', '/', 'single', 'version', 'wings', 'ca', "n't", 'remember', 'to', 'forget', 'you', '(', 'feat', '.', 'rihanna', ')', 'shot', 'me', 'down', '(', 'feat', '.', 'skylar', 'grey', ')', '-', 'radio', 'edit', 'say', 'something', 'a', 'sky', 'full', 'of', 'stars', 'come', 'get', 'it', 'bae', 'chandelier', 'xo', 'we', 'are', 'one', '(', 'ole', 'ola', ')', '[', 'the', 'official', '2014', 'fifa', 'world', 'cup', 'song', ']', 'not', 'about', 'angels', 'drunk', 'in', 'love', 'anaconda', 'boom', 'clap', '-', 'from', 'the', 'motion', 'picture', 'das', 'schicksal', 'ist', 'ein', 'mieser', 'verräter', 'la', 'la', 'la', '(', 'brasil', '2014', ')', '(', 'feat', '.', 'carlinhos', 'brown', ')', 'tee', 'shirt', '-', 'soundtrack', 'version', 'words', 'as', 'weapons', 'you', "'re", 'mine', '(', 'eternal', ')', 'sheezus', 'cannonball', 'it', "'s", 'on', 'again', '-', 'main', 'soundtrack', 'i', 'luh', 'ya', 'papi', 'not', 'a', 'bad', 'thing', 'thinking', 'out', 'loud', 'i', "'m", 'not', 'the', 'only', 'one', 'the', 'hills', 'love', 'yourself', 'uptown', 'funk', 'take', 'me', 'to', 'church', 'sugar', 'sorry', 'fourfiveseconds', 'love', 'me', 'like', 'you', 'do', '-', 'from', '``', 'fifty', 'shades', 'of', 'grey', "''", 'earned', 'it', '(', 'fifty', 'shades', 'of', 'grey', ')', '-', 'from', 'the', '``', 'fifty', 'shades', 'of', 'grey', "''", 'soundtrack', 'what', 'do', 'you', 'mean', '?', 'stitches', 'want', 'to', 'want', 'me', 'my', 'house', 'waves', '-', 'robin', 'schulz', 'radio', 'edit', 'night', 'changes', 'how', 'deep', 'is', 'your', 'love', 'never', 'forget', 'you', 'love', 'me', 'harder', 'animals', 'blame', 'worth', 'it', 'break', 'free', 'do', "n't", 'elastic', 'heart', 'rather', 'be', '(', 'feat', '.', 'jess', 'glynne', ')', 'hello', 'dear', 'future', 'husband', '43776', 'the', 'heart', 'wants', 'what', 'it', 'wants', 'hey', 'mama', '(', 'feat', '.', 'nicki', 'minaj', ',', 'bebe', 'rexha', '&amp;', 'afrojack', ')', 'genie', 'in', 'a', 'bottle', 'company', 'sing', 'jealous', '-', 'remix', 'really', 'do', "n't", 'care', 'downtown', '(', 'feat', '.', 'melle', 'mel', ',', 'grandmaster', 'caz', ',', 'kool', 'moe', 'dee', '&amp;', 'eric', 'nally', ')', 'only', 'love', 'can', 'hurt', 'like', 'this', 'heartbeat', 'song', 'up', 'trumpets', 'runnin', "'", '(', 'lose', 'it', 'all', ')', 'same', 'old', 'love', 'i', 'want', 'you', 'to', 'know', 'lips', 'are', 'movin', 'i', "'ll", 'show', 'you', 'here', 'i', 'lived', 'fireball', '(', 'feat', '.', 'john', 'ryan', ')', 'easy', 'love', 'the', 'feeling', 'i', 'really', 'like', 'you', 'bo', '$', '$', 'sugar', 'focus', 'all', 'about', 'that', 'bass', 'on', 'my', 'mind', 'love', 'me', 'like', 'you', 'broken', 'arrows', 'booty', 'what', 'do', 'you', 'mean', '?', '-', 'acoustic', 'mark', 'my', 'words', 'lay', 'it', 'all', 'on', 'me', 'american', 'oxygen', 'bang', 'bang', 'reality', '-', 'radio', 'edit', 'alive', 'sugar', '(', 'feat', '.', 'francesco', 'yates', ')', 'been', 'you', 'prayer', 'in', 'c', '-', 'robin', 'schulz', 'radio', 'edit', 'see', 'you', 'again', '(', 'feat', '.', 'charlie', 'puth', ')', 'heroes', '(', 'we', 'could', 'be', ')', 'feel', 'the', 'light', '-', 'from', 'the', '``', 'home', "''", 'soundtrack', 'perfect', 'ghosttown', 'bang', 'my', 'head', '(', 'feat', '.', 'sia', '&amp;', 'fetty', 'wap', ')', 'bloodstream', 'living', 'for', 'love', 'baby', 'do', "n't", 'lie', 'do', "n't", 'be', 'so', 'hard', 'on', 'yourself', 'steal', 'my', 'girl', 'celebrate', '(', 'from', 'the', 'original', 'motion', 'picture', '``', 'penguins', 'of', 'madagascar', "''", ')', 'we', 'are', 'here', 'st', 'jude', 'yesterday', '(', 'feat', '.', 'bebe', 'rexha', ')', 'time', 'of', 'our', 'lives', 'sparks', 'mr.', 'put', 'it', 'down', 'legendary', 'lovers', 'spark', 'the', 'fire', 'run', 'run', 'run', 'let', 'me', 'be', 'your', 'lover', 'dangerous', 'l.a.love', '(', 'la', 'la', ')', 'the', 'hills', 'love', 'yourself', 'cake', 'by', 'the', 'ocean', 'do', "n't", 'let', 'me', 'down', 'in', 'the', 'name', 'of', 'love', 'into', 'you', 'this', 'is', 'what', 'you', 'came', 'for', 'million', 'reasons', 'needed', 'me', '7', 'years', 'ca', "n't", 'stop', 'the', 'feeling', '!', '(', 'original', 'song', 'from', 'dreamworks', 'animation', "'s", '``', 'trolls', "''", ')', 'work', 'from', 'home', '(', 'feat', '.', 'ty', 'dolla', '$', 'ign', ')', 'scars', 'to', 'your', 'beautiful', 'like', 'i', "'m", 'gon', 'na', 'lose', 'you', '(', 'feat', '.', 'john', 'legend', ')', 'work', 'stitches', 'me', ',', 'myself', '&amp;', 'i', 'i', 'took', 'a', 'pill', 'in', 'ibiza', '-', 'seeb', 'remix', 'dangerous', 'woman', 'starving', 'shout', 'out', 'to', 'my', 'ex', 'electric', 'love', 'confident', 'too', 'good', 'roses', 'cold', 'water', '(', 'feat', '.', 'justin', 'bieber', '&amp;', 'mø', ')', 'me', 'too', 'light', 'it', 'up', '(', 'feat', '.', 'nyla', '&amp;', 'fuse', 'odg', ')', '[', 'remix', ']', 'ai', "n't", 'your', 'mama', 'close', 'toothbrush', 'all', 'we', 'know', 'final', 'song', 'company', 'hands', 'to', 'myself', 'all', 'i', 'ask', 'just', 'like', 'fire', '(', 'from', 'the', 'original', 'motion', 'picture', '``', 'alice', 'through', 'the', 'looking', 'glass', "''", ')', 'no', 'kill', 'em', 'with', 'kindness', 'cool', 'girl', 'runnin', "'", '(', 'lose', 'it', 'all', ')', 'here', 'perfect', 'illusion', 'pillowtalk', 'out', 'of', 'the', 'woods', 'rise', 'wherever', 'i', 'go', 'body', 'say', 'do', "n't", 'be', 'a', 'fool', 'like', 'i', 'would', 'cheap', 'thrills', 'i', 'got', 'you', 'run', 'away', 'with', 'me', 'cruel', '(', 'feat', '.', 'zayn', ')', 'send', 'my', 'love', '(', 'to', 'your', 'new', 'lover', ')', 'wtf', '(', 'where', 'they', 'from', ')', 'desire', 'when', 'we', 'were', 'young', 'i', 'know', 'what', 'you', 'did', 'last', 'summer', 'wish', 'that', 'you', 'were', 'here', '-', 'from', '\x93miss', 'peregrine\x92s', 'home', 'for', 'peculiar', 'children\x94', 'original', 'motion', 'picture', 'hurts', 'change', 'make', 'me', '...', '(', 'feat', '.', 'g-eazy', ')', 'keeping', 'your', 'head', 'up', 'true', 'colors', 'make', 'me', 'like', 'you', 'champagne', 'problems', 'blown', 'start', 'pep', 'rally', 'higher', 'invitation', 'one', 'call', 'away', '(', 'feat', '.', 'tyga', ')', '-', 'remix', 'beautiful', 'birds', '(', 'feat', '.', 'birdy', ')', 'little', 'lies', 'do', 'you', 'wan', 'na', 'come', 'over', '?', 'burnitup', '!', 'picky', '-', 'remix', 'behind', 'your', 'back', 'million', 'years', 'ago', 'shape', 'of', 'you', 'closer', 'starboy', 'treat', 'you', 'better', 'that', "'s", 'what', 'i', 'like', 'let', 'me', 'love', 'you', 'i', 'feel', 'it', 'coming', 'mercy', 'side', 'to', 'side', 'stay', 'it', 'ai', "n't", 'me', '(', 'with', 'selena', 'gomez', ')', 'malibu', 'something', 'just', 'like', 'this', 'rockabye', '(', 'feat', '.', 'sean', 'paul', '&amp;', 'anne-marie', ')', 'i', 'don\x92t', 'wan', 'na', 'live', 'forever', '(', 'fifty', 'shades', 'darker', ')', 'my', 'way', 'i', "'m", 'the', 'one', '(', 'feat', '.', 'justin', 'bieber', ',', 'quavo', ',', 'chance', 'the', 'rapper', '&amp;', 'lil', 'wayne', ')', 'praying', 'despacito', '-', 'remix', 'the', 'greatest', 'there', 'for', 'you', 'paris', 'crying', 'in', 'the', 'club', 'mama', 'slide', '(', 'feat', '.', 'frank', 'ocean', '&amp;', 'migos', ')', 'swish', 'swish', 'chained', 'to', 'the', 'rhythm', 'cold', '(', 'feat', '.', 'future', ')', 'love', 'reggaetón', 'lento', '(', 'remix', ')', 'all', 'i', 'ask', 'first', 'time', 'the', 'cure', 'how', 'far', 'i', "'ll", 'go', '-', 'from', '``', 'moana', "''", 'bodak', 'yellow', 'rich', 'love', '(', 'with', 'seeb', ')', 'tired', 'came', 'here', 'for', 'love', '24k', 'magic', 'strip', 'that', 'down', '(', 'feat', '.', 'quavo', ')', 'cut', 'to', 'the', 'feeling', 'ok', '-', 'spotify', 'version', 'bon', 'appétit', 'summer', 'bummer', '(', 'feat', '.', 'a', '$', 'ap', 'rocky', '&amp;', 'playboi', 'carti', ')', 'get', 'low', '(', 'with', 'liam', 'payne', ')', 'kissing', 'strangers', 'slow', 'hands', 'younger', 'now', 'body', 'moves', 'reality', '(', 'feat', '.', 'janieck', 'devy', ')', '-', 'radio', 'edit', 'angel', 'touch', '(', 'feat', '.', 'kid', 'ink', ')', 'we', 'do', "n't", 'talk', 'anymore', '-', 'droeloe', 'remix', 'love', 'incredible', '(', 'feat', '.', 'camila', 'cabello', ')', 'no', 'vacancy', '(', 'with', 'sebastián', 'yatra', ')', 'rich', 'boy', 'lust', 'for', 'life', '(', 'with', 'the', 'weeknd', ')', 'greenlight', '(', 'feat', '.', 'flo', 'rida', '&amp;', 'lunchmoney', 'lewis', ')', 'influence', 'remember', 'i', 'told', 'you', 'messin', "'", 'around', 'water', 'under', 'the', 'bridge', 'free', 'me', 'kissing', 'strangers', '-', 'remix', 'a', 'l', 'i', 'e', 'n', 's', 'one', 'kiss', '(', 'with', 'dua', 'lipa', ')', 'havana', '(', 'feat', '.', 'young', 'thug', ')', 'i', 'like', 'it', 'new', 'rules', 'there', "'s", 'nothing', 'holdin', "'", 'me', 'back', 'no', 'tears', 'left', 'to', 'cry', 'idgaf', 'in', 'my', 'blood', 'wolves', 'dusk', 'till', 'dawn', '-', 'radio', 'edit', 'attention', 'electricity', '(', 'with', 'dua', 'lipa', ')', 'love', 'on', 'the', 'brain', 'let', 'me', 'go', '(', 'with', 'alesso', ',', 'florida', 'georgia', 'line', '&amp;', 'watt', ')', 'silence', 'sorry', 'not', 'sorry', 'shallow', '-', 'radio', 'edit', 'these', 'days', 'what', 'lovers', 'do', '(', 'feat', '.', 'sza', ')', 'finesse', '-', 'remix', ';', 'feat', '.', 'cardi', 'b', 'perfect', 'duet', '(', 'ed', 'sheeran', '&amp;', 'beyoncé', ')', 'bad', 'at', 'love', 'him', '&amp;', 'i', '(', 'with', 'halsey', ')', 'friends', '(', 'with', 'bloodpop®', ')', 'wild', 'thoughts', '(', 'feat', '.', 'rihanna', '&amp;', 'bryson', 'tiller', ')', 'my', 'my', 'my', '!', 'capital', 'letters', 'sick', 'boy', 'tequila', 'look', 'what', 'you', 'made', 'me', 'do', 'youth', '(', 'feat', '.', 'khalid', ')', 'bad', 'liar', 'anywhere', 'say', 'something', 'chun-li', 'sign', 'of', 'the', 'times', 'familiar', 'let', 'me', 'supernova', 'nervous', 'first', 'time', 'end', 'game', 'mi', 'gente', '(', 'feat', '.', 'beyoncé', ')', 'lemon', 'for', 'you', '(', 'with', 'rita', 'ora', ')', 'want', 'to', 'what', 'i', 'need', '(', 'feat', '.', 'kehlani', ')', 'wait', 'what', 'about', 'us', 'kissing', 'strangers', '2u', '(', 'feat', '.', 'justin', 'bieber', ')', 'walk', 'on', 'water', '(', 'feat', '.', 'beyoncé', ')', 'this', 'town', 'girls', '(', 'feat', '.', 'cardi', 'b', ',', 'bebe', 'rexha', '&amp;', 'charli', 'xcx', ')', 'move', 'to', 'miami', 'miss', 'you', '(', 'with', 'major', 'lazer', '&amp;', 'tory', 'lanez', ')', 'filthy', 'never', 'be', 'the', 'same', '-', 'radio', 'edit', 'ferrari', 'supplies', 'boom', 'boom', '...', 'ready', 'for', 'it', '?', '-', 'bloodpop®', 'remix', 'drip', '(', 'feat', '.', 'migos', ')', 'tell', 'me', 'you', 'love', 'me', '-', 'notd', 'remix', 'memories', 'lose', 'you', 'to', 'love', 'me', 'someone', 'you', 'loved', 'señorita', 'how', 'do', 'you', 'sleep', '?', 'south', 'of', 'the', 'border', '(', 'feat', '.', 'camila', 'cabello', '&amp;', 'cardi', 'b', ')', 'trampoline', '(', 'with', 'zayn', ')', 'happier', 'truth', 'hurts', 'good', 'as', 'hell', '(', 'feat', '.', 'ariana', 'grande', ')', '-', 'remix', 'higher', 'love', 'only', 'human', 'beautiful', 'people', '(', 'feat', '.', 'khalid', ')', 'sucker', 'do', "n't", 'call', 'me', 'up', 'i', 'do', "n't", 'care', '(', 'with', 'justin', 'bieber', ')', 'talk', '(', 'feat', '.', 'disclosure', ')', 'giant', '(', 'with', "rag'n'bone", 'man', ')', 'takeaway', 'all', 'around', 'the', 'world', '(', 'la', 'la', 'la', ')', 'girls', 'like', 'you', '(', 'feat', '.', 'cardi', 'b', ')', 'call', 'you', 'mine', 'no', 'guidance', '(', 'feat', '.', 'drake', ')', 'antisocial', '(', 'with', 'travis', 'scott', ')', 'taki', 'taki', '(', 'feat', '.', 'selena', 'gomez', ',', 'ozuna', '&amp;', 'cardi', 'b', ')', 'con', 'calma', '-', 'remix', 'find', 'u', 'again', '(', 'feat', '.', 'camila', 'cabello', ')', 'cross', 'me', '(', 'feat', '.', 'chance', 'the', 'rapper', '&amp;', 'pnb', 'rock', ')', 'no', 'brainer', '(', 'feat', '.', 'justin', 'bieber', ',', 'chance', 'the', 'rapper', '&amp;', 'quavo', ')', 'nothing', 'breaks', 'like', 'a', 'heart', '(', 'feat', '.', 'miley', 'cyrus', ')', 'kills', 'you', 'slowly']</code></pre>
 </div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="160">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> score_words(words):</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  positive <span class="op">=</span> []</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  negative <span class="op">=</span> []</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> words:</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> sia.polarity_scores(i)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> scores[<span class="st">"compound"</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>      positive.append(i)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> scores[<span class="st">"compound"</span>] <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>      negative.append(i)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> positive, negative</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>positive, negative <span class="op">=</span> score_words(words)</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(negative)</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(positive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-scrolled="true" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> score_words(words):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  positive <span class="op">=</span> []</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  negative <span class="op">=</span> []</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> words:</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> sia.polarity_scores(i)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> scores[<span class="st">"compound"</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>      positive.append(i)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> scores[<span class="st">"compound"</span>] <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>      negative.append(i)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> positive, negative</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>positive, negative <span class="op">=</span> score_words(words)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(negative)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(positive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['bad', 'broken', 'dirty', 'misery', 'blah', 'blah', 'blah', 'broken', 'bitch', 'hard', 'lost', 'hell', 'trouble', 'fire', 'kill', 'stop', 'stop', 'worry', 'attack', 'die', 'sadness', 'lose', 'bitch', 'lose', 'hard', 'killed', 'heartbreaker', 'fire', 'hunger', 'crazy', 'foolish', 'freak', 'rude', 'shake', 'problem', 'dirty', 'killed', 'forget', 'drunk', 'weapons', 'bad', 'sorry', 'forget', 'blame', 'jealous', 'hurt', 'lose', 'broken', 'hard', 'steal', 'fire', 'dangerous', 'stop', 'lose', 'dangerous', 'starving', 'fire', 'no', 'kill', 'lose', 'fool', 'cruel', 'wtf', 'hurts', 'problems', 'lies', 'crying', 'tired', 'cut', 'bummer', 'low', 'no', 'no', 'tears', 'cry', 'sorry', 'sorry', 'bad', 'sick', 'bad', 'liar', 'nervous', 'miss', 'lose', 'hurts', 'hell', 'sucker', 'no', 'no', 'kills']
 ['love', 'romance', 'dynamite', 'like', 'love', 'want', 'like', 'dream', 'kiss', 'ha', 'sexy', 'original', 'original', 'love', 'like', 'like', 'love', 'top', 'best', 'party', 'good', 'yeah', 'sexy', 'glory', 'please', 'love', 'cheers', 'super', 'heaven', 'paradise', 'beautiful', 'love', 'like', 'love', 'stronger', 'good', 'glad', 'beauty', 'love', 'party', 'kiss', 'fame', 'lucky', 'clarity', 'best', 'kiss', 'sweet', 'brave', 'beautiful', 'love', 'love', 'love', 'play', 'love', 'party', 'like', 'love', 'applause', 'beautiful', 'like', 'happy', 'treasure', 'love', 'adore', 'love', 'good', 'perfect', 'love', 'yeah', 'party', 'grey', 'love', 'love', 'love', 'like', 'grey', 'grey', 'grey', 'want', 'want', 'love', 'love', 'worth', 'free', 'dear', 'care', 'love', 'like', 'love', 'want', 'easy', 'love', 'feeling', 'like', 'love', 'like', 'alive', 'heroes', 'perfect', 'love', 'celebrate', 'original', 'lovers', 'spark', 'lover', 'love', 'love', 'feeling', 'original', 'ty', 'beautiful', 'like', 'love', 'confident', 'good', 'like', 'original', 'kindness', 'cool', 'perfect', 'like', 'thrills', 'love', 'lover', 'desire', 'wish', 'peculiar', 'original', 'true', 'like', 'champagne', 'beautiful', 'treat', 'better', 'like', 'love', 'mercy', 'like', 'chance', 'praying', 'greatest', 'love', 'rich', 'love', 'love', 'feeling', 'ok', 'kissing', 'love', 'rich', 'free', 'kissing', 'kiss', 'like', 'love', 'lovers', 'perfect', 'love', 'friends', 'want', 'kissing', 'ready', 'love', 'love', 'loved', 'happier', 'truth', 'good', 'love', 'beautiful', 'care', 'like', 'chance', 'chance', 'like']</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="162">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>most_positive <span class="op">=</span> nltk.FreqDist(positive).most_common(<span class="dv">15</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.barh([x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> most_positive],[x[<span class="dv">1</span>] <span class="cf">for</span> x <span class="kw">in</span> most_positive], color <span class="op">=</span> <span class="st">"lightsteelblue"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 align="center" class="anchored">
+Frequency of Positive Words in Top Song Titles (Figure 5 Below)
+</h3>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>most_positive <span class="op">=</span> nltk.FreqDist(positive).most_common(<span class="dv">15</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plt.barh([x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> most_positive],[x[<span class="dv">1</span>] <span class="cf">for</span> x <span class="kw">in</span> most_positive], color <span class="op">=</span> <span class="st">"lightsteelblue"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Final Project Notebook Draft_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+<p><img src="Final Project Notebook Blog_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<h3 align="center" class="anchored">
+Frequency of Negative Words in Top Song Titles (Figure 6 Below)
+</h3>
 <div class="cell" data-execution_count="164">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>most_negative <span class="op">=</span> nltk.FreqDist(negative).most_common(<span class="dv">15</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.barh([x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> most_negative],[x[<span class="dv">1</span>] <span class="cf">for</span> x <span class="kw">in</span> most_negative], color <span class="op">=</span> <span class="st">"maroon"</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>most_negative <span class="op">=</span> nltk.FreqDist(negative).most_common(<span class="dv">15</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.barh([x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> most_negative],[x[<span class="dv">1</span>] <span class="cf">for</span> x <span class="kw">in</span> most_negative], color <span class="op">=</span> <span class="st">"maroon"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Final Project Notebook Draft_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+<p><img src="Final Project Notebook Blog_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>The above data analysis can determine what kind of titles are frequently used for popular songs. Negative words appear far less often in the “title” column, as demonstrated by the maroon figure. Love appears around 40 times in the titles of the most popular tracks, which indicates that it is a commonly used word in song titles. While I cannot deduce whether love is used in a positive or negative context within the title, the use of the word alone is enough to hint towards either a romantic or breakup type of song.</p>
-<p>Here I will include more in depth analysis about the words in the song titles, and further discuss the data visualizations listed below. I hope to better understand what components go into a popular song, and to determine if there are any correlations between variables.</p>
-<section id="data-visualizations-to-include" class="level3">
-<h3 class="anchored" data-anchor-id="data-visualizations-to-include">Data Visualizations to Include</h3>
-<ul>
-<li>More scatter plots comparing popularity to other variables
-<ul>
-<li>pop vs.&nbsp;dnce</li>
-<li>pop vs.&nbsp;bpm</li>
-<li>pop vs.&nbsp;val</li>
-</ul></li>
-<li>Katy Perry’s (or a specific artist) song trends
-<ul>
-<li>year vs.&nbsp;pop</li>
-<li>trends in valence</li>
-</ul></li>
-<li>Top songs for 2010: trends in valence/dnce</li>
-<li>Dance pop songs: dnce vs.&nbsp;bpm
-<ul>
-<li>possibly comparing these with another genre, or comparing 2 smaller genres to see if there is a difference in overall trends?</li>
-</ul></li>
-</ul>
-
-
+<p>The above data analysis and visualizations can determine what variety of words are frequently used for the titles of popular songs. First, I turned all of the song titles in the “title” column into a list, then into a string. The string of titles was then tokenized into a list of words that could be analyzed using vader. The positive and negative words were sorted into their own lists that were then used to create plots of the frequency of the words in song titles.</p>
 </section>
+<section id="data-results" class="level2">
+<h2 class="anchored" data-anchor-id="data-results">Data Results</h2>
+<p>The overall result of the data analysis is that there are a few patterns that comprise the top songs between 2010 to 2019. As seen in Table 1, both energy and dance scores were high on average. Each year featured a wide variety of valence scores for all of the top songs. As seen from Figure 1, the range of valence scores fluctuated throughout the years, with 2012 having the highest overall valence scores. Table 2 shows an overview of the averages for all of the numerical variables for each year in the dataset. One of the obvious outliers in this data is the fact that 2019 has the highest average popularity score compared to the other years. All of the other values maintained fairly consistent throughout the years. The most popular artists were Katy Perry, with 17 songs on Spotify’s top songs list, and Justin Bieber, with 16 top tracks (Figure 2). Additionally, the most popular genre for all of the songs was dance pop (Figure 3). Almost half, specifically 300 out of 603, of the top tracks were labeled as dance pop. Generally, the songs in the dataset had high energy scores that corresponded with relatively high popularity scores. Figure 4 depicts the distribution of valence scores for each year for Katy Perry’s top 17 songs. There are no clear outliers or trends, which indicates that songs with positive and negative valence can become popular, and that artists make a variety of types of songs.</p>
+<p>With respect to the primary analysis about song titles for the top Spotify songs, positive words generally appear more frequently than negative words. Negative words appear far less often in the “title” column, as demonstrated by Figure 6. Love appears around 40 times in the titles of the most popular tracks, which indicates that it is a commonly used word in song titles (Figure 5).</p>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>The findings from the song title analysis can be significant in addressing the research question of which types songs were popular in the 2010’s. While the connotation of love within the context of the title cannot be determined solely from this graph, the use of the word alone is enough to hint towards either a romantic or breakup type of song. Regardless of the other variables involved in the song, the appeal of love related songs has proved to be a consistent factor for the top tracks. The discovery that <strong>love</strong> is the most frequently appearing word in the list of top songs can be explained by the fact that love songs in general are known to be popular (Betkowski, 2016). Because love is such a strong and common emotion, conveying it through songs can relate to a wide population of people. Music has been discovered to be able to reach the brain, which may explain why people feel strongly about love songs and why these songs continue to top charts. Understanding these statistics about love-related songs can help to predict future trends in songs, which can be helpful to artists and record labels that are trying to release popular music.</p>
+<p>Additionally, the majority of the top Spotify songs were categorized into the <strong>dance pop</strong> genre. This result also contributes to understanding the research question, because it shows that generally there is a trend in genres that comprise the popular songs list. While there is no clear correlation between song popularity and energy score or dance score, the majority of the songs have relatively high scores for both categories. These high scores indicate that dance and energy scores are relevant for the top Spotify songs, because the overall averages for both are relatively high. Dance pop songs may not always be relatable and sentimental, like the love songs mentioned above, but they do create fun tracks that are popular on the radio. The familiarity and nostalgia from past music is also what makes this genre so popular, hence the nickname, “pop” music.</p>
+<p>Overall, popular songs generally have high energy and dance scores, as seen through the visualizations and tables from this data analysis project. The most frequently appearing word in popular song titles is “love”, which can be connected to the appeal and relatability of love-related songs. The prominence of the “dance pop” genre in the Spotify top songs list can also be reflective of the societal nature to listen to what is trending. Although there are approximately 218 genres that comprise the top Spotify songs in this dataset, half of the songs fall within the “dance pop” category. The everlasting popularity of pop songs can hint at a societal and cultural bias towards media that is relatable and familiar. The increase in average popularity scores for songs between 2010 and 2019 can also contribute to a larger picture of an overall increase in music streaming and technological advancements in music. Because the score represents the relative popularity of the songs compared to the others, the greater average popularity of 2019 songs may mean that the consumption and streaming of songs has also increased since 2010. While media and music continue to progress, some features of songs have persisted throughout time. The consistency of some music features and scores throughout the ten year span of this analysis can indicate a longevity of music trends, and help musicians to predict combinations for future top hits.</p>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<p>Betkowski, B. (2016, February 10). Why we love love songs. Folio. https://www.ualberta.ca/folio/2016/02/why-we-love-love-songs.html</p>
+<p>Suttie, J. S. J. (n.d.). Why we love music. Greater Good. https://greatergood.berkeley.edu/article/item/why_we_love_music</p>
+
+
 </section>
 </section>
 
